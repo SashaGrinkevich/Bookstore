@@ -1,0 +1,75 @@
+.header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   max-width: 1120px;
+    margin: 0 auto;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.searchWrapper {
+    flex: 1;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 30px 32px;
+}
+
+.search {
+    background-color: transparent;
+    border: none;
+    width: 542px;
+    box-sizing: border-box;
+    border: 1px solid #E7E7E7;
+    font-size: 16px;
+    padding: 18px 8px;
+}
+
+.search:focus {
+    outline: none;
+
+}
+  
+.searchButton {
+    display: flex;
+    align-items: center;
+    border: none;
+    justify-content: center;
+    transition: 0.3s;
+    background-color: white;
+   
+  }
+  
+.searchButton:hover {
+    cursor: pointer;
+
+}
+  
+.user {
+    text-align: center;
+}
+  
+.logo {
+    width: 138px;
+    height: 28.64px;
+    margin-right: 60px;
+}
+.navButtons {
+    width: 184px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.favButton {
+    width: 56px;
+    height: 56px;
+}
+.shoppingBagButton {
+    width: 56px;
+    height: 56px;
+}
+.accountButton{
+    width: 56px;
+    height: 56px;
+}
+  
