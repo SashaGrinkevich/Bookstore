@@ -1,5 +1,4 @@
 export interface Book {
-
   title: string;
   subtitle: string;
   isbn13: number | string;
@@ -23,7 +22,7 @@ type GetBooksSuccessResponse = Book;
 export const getBook = ({
   isbn13,
 }: GetBooksParams): Promise<GetBooksSuccessResponse> => {
-  return fetch(`https://api.itbook.store/1.0/new${isbn13}`).then((res) =>
+  return fetch(`https://api.itbook.store/1.0/${isbn13}`).then((res) =>
     res.json()
   );
 };
