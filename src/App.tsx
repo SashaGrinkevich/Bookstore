@@ -1,11 +1,14 @@
-import React from 'react';
-import './App.css';
-import Header from './components/Header/Header';
+import "./variables.css";
 
-function App() {
+
+import Router from "./router/router";
+
+
+
+const App = () => {
   return (
-    <Header />
+      <Router />
   );
-}
+};
 
 export default App;

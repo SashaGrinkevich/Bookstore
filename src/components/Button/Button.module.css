@@ -1,0 +1,41 @@
+.button{
+    display: flex;
+    font-family: "Bebas Neue";
+font-size: 24px;
+font-weight: 700;
+line-height: 24px;
+text-align: center;
+border: none;
+color: var(--icon-color);
+
+}
+.button:hover {
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+.primary{
+    color: var(--text-primary);
+}
+.secondary{
+    color: var( --icon-color);
+}
+
+
+.button:disabled {
+    color: var(--border-color-secondary);
+  }
+  
+.button:hover.button:disabled {
+    cursor: default;
+}
+.primary:hover {
+    opacity: 0.85;
+    
+}
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+  }

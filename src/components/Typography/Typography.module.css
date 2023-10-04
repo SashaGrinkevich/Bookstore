@@ -1,0 +1,71 @@
+.primary {
+    color:var(--text-primary);
+}
+.primary2{
+    color: var(--text-primary2);
+}
+
+.secondary {
+    color: var(--text-secondary);
+}
+
+.h1{
+font-family: 'Bebas Neue';
+font-size: 56px;
+font-weight: 700;
+line-height: 64px;
+
+}
+.h2{
+
+font-family: 'Bebas Neue';
+font-size: 40px;
+font-weight: 700;
+line-height: 60px;
+
+
+
+}
+.h3{
+font-family: 'Bebas Neue';
+font-size: 24px;
+font-weight: 700;
+line-height: 32px;
+
+}
+.h4{
+font-family: 'Bebas Neue';
+font-size: 18px;
+font-weight: 700;
+line-height: 24px;
+}
+.h5{
+    font-family: 'Bebas Neue';
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+}
+
+.h6{
+    font-family: 'Helios';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 32px;  
+}
+
+.p {
+    font-family: 'Helios';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 32px;
+   
+}
+
+.span{
+font-family: 'Helios';
+font-size: 16px;
+font-weight: 700;
+line-height: 24px;
+
+
+}

@@ -1,0 +1,68 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
+}
+
+.label {
+  font-family: 'Helios';
+font-size: 16px;
+font-weight: 700;
+line-height: 32px;
+
+}
+
+.input {
+  font-family: 'Helios';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 32px;
+  padding: 14px 0 14px 20px;
+  border: 1px solid var(--border-color-secondary)
+}
+
+.input:focus {
+  outline: none;
+  border-color: var( --border-color-secondary);
+}
+
+.input:disabled {
+  background-color: rgb(242, 242, 242);
+  border-color: var( --border-color-secondary);
+}
+
+.inputError,
+.inputError:focus {
+  border-color: var(--border-color);
+}
+
+.helperText {
+  font-size: 12px;
+  margin: 4px 0 0 8px;
+}
+
+.helperTextError {
+  color: var(--text-primary);
+}
+
+.label.error {
+  color: var(--text-error);
+}
+
+
+.input.error {
+  border-color: var(--text-error);
+}
+
+
+.description {
+  font-family: 'Helios';
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 32px;
+
+}
+
+.description.error {
+  color: var(--text-error);
+}

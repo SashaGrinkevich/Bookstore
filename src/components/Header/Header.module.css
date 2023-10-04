@@ -1,4 +1,5 @@
 .header {
+    background-color: var(--header-bg-color);
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -6,13 +7,15 @@
    max-width: 1120px;
     margin: 0 auto;
     border-bottom: 1px solid #E7E7E7;
+    margin-bottom: 72px;
 }
 
 .searchWrapper {
     flex: 1;
     display: flex;
-    flex-wrap: nowrap;
-    margin: 30px 32px;
+    flex-wrap: wrap;
+    margin: 24px 0px;
+    position: relative;
 }
 
 .search {
@@ -20,56 +23,82 @@
     border: none;
     width: 542px;
     box-sizing: border-box;
-    border: 1px solid #E7E7E7;
+    border: 1px solid var(--border-color-secondary);
     font-size: 16px;
-    padding: 18px 8px;
+    padding: 18px 30px;
+    margin: 0 105px 0 154px;
+    color: var(--text-primary);
 }
 
 .search:focus {
     outline: none;
+    border-bottom-color: var(--text-primary);
+    
 
 }
   
 .searchButton {
     display: flex;
     align-items: center;
-    border: none;
     justify-content: center;
-    transition: 0.3s;
-    background-color: white;
-   
+    transition: 0.3s; 
+    background: none;
+    border: none;
+    position: absolute;
+    top:30%;
+    left:77%;
   }
   
 .searchButton:hover {
     cursor: pointer;
+    background-color: var(--main-bg-color);
 
 }
   
 .user {
     text-align: center;
+    color: var(--text-primary);
 }
   
 .logo {
     width: 138px;
     height: 28.64px;
-    margin-right: 60px;
 }
 .navButtons {
     width: 184px;
     display: flex;
     justify-content: space-around;
+    
 }
 
 .favButton {
     width: 56px;
     height: 56px;
+    background: none;
+    border: none;
+}
+.favButton:hover {
+    cursor: pointer;
+
 }
 .shoppingBagButton {
     width: 56px;
     height: 56px;
+    background: none;
+    border: none;
+}
+.shoppingBagButton:hover {
+    cursor: pointer;
+
 }
 .accountButton{
     width: 56px;
     height: 56px;
+    background: none;
+    border: none;
+}
+.accountButton:hover {
+    cursor: pointer;
+
 }
   

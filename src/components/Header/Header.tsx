@@ -5,7 +5,10 @@ import Frame from "./Img/Frame.svg"
 import Heart from './Img/Heart .svg'
 import ShoppingBag from './Img/ShoppingBag.svg'
 
+
 import styles from "./Header.module.css";
+import Button from "../Button/Button";
+import Input from "../Input/Input";
 
 const Header: React.FC = () => {
     const [searchValue, setSearchValue] = useState("");
@@ -17,25 +20,25 @@ const Header: React.FC = () => {
         <div className={styles.header}>
             <img src={Bookstore} alt="logo" className={styles.logo} />
             <div className={styles.searchWrapper}>
-                <input type="text"
+                <Input type="text"
+                placeholder="Search"
                 className={styles.search}
-                value={searchValue} 
-                onChange={handleChange}
-                />
-                <button className={styles.serchButton}>
+                value={searchValue}
+                onChange={handleChange} label={""}                />
+                <Button className={styles.searchButton}>
                     <img src={Search} alt="searchImg" />
-                </button>
+                </Button>
             </div>
             <div className={styles.navButtons}>
-                <button className={styles.favButton}>
+                <Button className={styles.favButton}>
                     <img src={Heart} alt="logo" />
-                </button>
-                <button className={styles.shoppingBagButton}>
+                </Button>
+                <Button className={styles.shoppingBagButton}>
                     <img src={ShoppingBag} alt="logo" />
-                </button>
-                <button className={styles.accountButton}>
+                </Button>
+                <Button className={styles.accountButton}>
                     <img src={Frame} alt="logo" />
-                </button>
+                </Button>
             </div>
         </div>
     )
