@@ -1,0 +1,31 @@
+
+
+.imgWrapper {
+  padding: 1px 63px;
+  margin-bottom: 12px;
+  background-color: bisque;
+}
+
+.img {
+  width: 226px;
+  
+
+
+}
+.title{
+  margin: 24px 0 8px 0;
+  text-align: left;
+  height: 64px;
+  
+}
+.subtitle{
+  text-align: left;
+  height: 24px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  
+}
+

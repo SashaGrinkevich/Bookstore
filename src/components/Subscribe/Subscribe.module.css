@@ -1,0 +1,44 @@
+.wrapperForm{
+    max-width: 1120px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: start;
+    margin: 0 auto;
+    background-color: #F4EEFD;
+    padding: 56px 0;
+}
+.descrtiprionForm{
+    margin: 0 64px;
+}
+.formTitle{
+    color: var(--text-primary);
+    margin: 15px 0;
+}
+
+.subscribe{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 64px;
+    
+
+}
+.inputSubscribe{
+    width: 845px;
+    height:52px;
+padding: 0;
+
+
+}
+.buttonSubscribe{
+background-color: var(--border-color);
+color: var(--icon-color);
+width: 147px;
+padding: 15px;
+font-weight: 300;
+height:56px;
+border-radius: 0px 2px 2px 0px;
+
+}
+
