@@ -20,7 +20,7 @@ const Main: React.FC = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [setBooks]);
+  }, []);
   return (
     <>
       {loading && "Loading"}
