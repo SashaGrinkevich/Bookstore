@@ -11,14 +11,14 @@ import {
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Main from "../pages/Main";
-import BookPage from "../pages/BookPage";
+import Book from "../pages/Book";
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="*" element={<Navigate to="/" />} />
-      <Route path="/books/:isbn13" element={<BookPage />} />
+      <Route path="/books/:id" element={<Book />} />
       <Route path="/" element={<Main />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />

@@ -1,7 +1,12 @@
 import { Book } from "./getBook";
+import { client } from "..";
 
-export const getBooks = (): Promise<Book[]> => {
-  return fetch(`https://api.itbook.store/1.0/new`)
-    .then((res) => res.json())
-    .then((res) => res.books);
+type GetBooksSuccessResponse = {
+  results: Book[];
+}
+
+export const getBooks = (): Promise<GetBooksSuccessResponse> => {
+  return client
+    .get(`/new`)
+    .then((res) => res.data.books);
 };
