@@ -1,9 +1,8 @@
 import { Book } from "./getBook";
 import { client } from "..";
 
-type GetBooksSuccessResponse = {
-  results: Book[];
-}
+type GetBooksSuccessResponse = Book[];
+
 
 export const getBooks = (): Promise<GetBooksSuccessResponse> => {
   return client

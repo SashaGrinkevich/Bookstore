@@ -22,7 +22,7 @@ const Main: React.FC = () => {
 
     getBooks()
       .then((data) => {
-        dispatch(setBooks(data.results))
+        dispatch(setBooks(data))
       })
       .finally(() => {
         dispatch(setIsBooksCardsLoading(false));
