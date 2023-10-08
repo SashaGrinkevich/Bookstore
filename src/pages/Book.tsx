@@ -1,4 +1,4 @@
-import BookPostDetail from "../components/BookPostDetail/BookPostDetail";
+import BookPostDetail from "../components/BookCardDetail/BookCardDetail";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import MainLayout from "../layouts/MainLayout";

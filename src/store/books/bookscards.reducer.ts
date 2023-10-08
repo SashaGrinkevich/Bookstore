@@ -31,13 +31,23 @@ const booksCardsSlice = createSlice({
       state.isBooksLoading = action.payload;
     },
     setBooks: (state, action: PayloadAction<Book[]>) => {
-      state.books = action.payload;
+      state.books = action.payload.map((book)=>({
+        ...book,
+        isFavorite:false
+      }));
     },
     setIsBookCardLoading: (state, action: PayloadAction<boolean>) => {
       state.isBooksLoading = action.payload;
     },
     setBook: (state, action: PayloadAction<Book>) => {
       state.book = action.payload;
+    },
+    togglePostIsFavorite: (state, action: PayloadAction<Book["isbn13"]>) => {
+      const book = state.books.find((book) => book.isbn13 === action.payload);
+
+      if (book) {
+        book.isFavorite = !book.isFavorite;
+      }
     },
   },
 });
@@ -47,6 +57,7 @@ export const {
   setBooks,
   setIsBookCardLoading,
   setBook,
+  togglePostIsFavorite
 } = booksCardsSlice.actions;
 
 export default booksCardsSlice.reducer;

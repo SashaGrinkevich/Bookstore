@@ -1,3 +1,4 @@
+
 .title {
   text-align: left;
 }
@@ -25,8 +26,17 @@
 .imgWrapper {
   width: 544px;
   height: 472px;
-  background-color: #FEE9E2
+  background-color: #FEE9E2;
+  position: relative;
+  
 }
+.favButton{
+  position: absolute;
+  top:10px;
+  right: 10px;
+  
+}
+.imgFav{width: 35px;}
 
 .price {
   margin: 14px 0;
@@ -88,4 +98,8 @@
 .preview{
   text-align: center;
   margin: 40px 144px 0 144px;
+}
+
+.tabItem{
+margin: 72px 0 48px 0;
 }

@@ -15,6 +15,7 @@ export interface Book {
   year: number;
   rating: boolean;
   desc: string;
+  isFavorite: boolean;
   pdf: {};
 }
 

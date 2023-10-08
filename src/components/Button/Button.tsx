@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={clsx(styles.button, styles[color], styles[variant], className)}
+    className={clsx(styles.button, styles[color], styles[variant], className)}
       onClick={onClick}
       type={type}
     >

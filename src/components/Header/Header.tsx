@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Bookstore from "./Img/Bookstore.png";
-import Search from "./Img/Search.svg";
-import Frame from "./Img/Frame.svg"
-import Heart from './Img/Heart .svg'
-import ShoppingBag from './Img/ShoppingBag.svg'
+import Bookstore from '../../components/Icon/icons/Bookstore.png'
+import Search from "../../components/Icon/icons/Search.svg";
+import User from "../../components/Icon/icons/Frame.svg"
+import Favorite from "../../components/Icon/icons/Favorite.svg"
+import Cart from '../../components/Icon/icons/Cart.svg'
 
 
 import styles from "./Header.module.css";
@@ -31,13 +31,13 @@ const Header: React.FC = () => {
             </div>
             <div className={styles.navButtons}>
                 <Button className={styles.favButton}>
-                    <img src={Heart} alt="logo" />
+                    <img src={Favorite} alt="logo" />
                 </Button>
                 <Button className={styles.shoppingBagButton}>
-                    <img src={ShoppingBag} alt="logo" />
+                    <img src={Cart} alt="logo" />
                 </Button>
                 <Button className={styles.accountButton}>
-                    <img src={Frame} alt="logo" />
+                    <img src={User} alt="logo" />
                 </Button>
             </div>
         </div>

@@ -2,21 +2,31 @@ import { useParams } from "react-router-dom";
 import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
 import Typography from "../Typography/Typography";
 import { getBook } from "../../api/Books/getBook";
-import styles from "./BookPostDetail.module.css";
+import styles from "./BookCardDetail.module.css";
 import Button from "../Button/Button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setIsBookCardLoading,
-  setBook,
-} from "../../store/books/bookscards.reducer";
+import {setIsBookCardLoading, setBook,} from "../../store/books/bookscards.reducer";
 import Subscribe from "../Subscribe/Subscribe";
+import Tabs, { Tab } from "../Tabs/Tabs";
+import Favorite from "../../components/Icon/icons/Favorite.svg"
+import Favorites from "../Favorites/Favorites";
+
+const tabs: Tab[] = [
+  {
+    label: "Description",
+    value: "description",
+  },
+  { label: "Authors", value: "authors" },
+  {label:"Reviews", value:"reviews"},
+  { label: "My Favorites", value: "favorites" },
+];
 
 const BookPostDetail: React.FC = () => {
   const { id: bookId } = useParams();
 
-  const { book, isBookLoading: loading } = useSelector(getSlice);
+  const { book,books, isBookLoading: loading } = useSelector(getSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,10 +53,15 @@ const BookPostDetail: React.FC = () => {
     // },
   ];
 
+  const [activeTab, setActiveTab] = useState(tabs[0].value);
+  const handleChangeTab = (tab: Tab) => setActiveTab(tab.value);
+  const favoritesBooks = books.filter((book) => book.isFavorite);
+
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       {loading && "Loading"}
+      
 
       {book && (
         <>
@@ -57,6 +72,9 @@ const BookPostDetail: React.FC = () => {
             <div className={styles.card}>
               <div className={styles.imgWrapper}>
                 <img className={styles.img} src={book.image} alt={book.title} />
+                <Button variant="icon" className={styles.favButton}>
+                    <img src={Favorite} alt="logo" className={styles.imgFav} />
+                </Button>
               </div>
               <div className={styles.content}>
                 <div className={styles.description}>
@@ -119,10 +137,20 @@ const BookPostDetail: React.FC = () => {
               </div>
             </div>
           </div>
+          <div className={styles.tabItem}>
+          <Tabs
+          className={styles.tabs }
+          activeTab={activeTab}
+          tabs={tabs}
+          onTabClick={handleChangeTab}
+          /></div>
           <div>
             <Subscribe />
           </div>
-        </>
+        {!loading && activeTab === "favorites" && favoritesBooks.length > 0 && (
+              <Favorites books={favoritesBooks} />
+          )}</>
+            
       )}
     </div>
   );
