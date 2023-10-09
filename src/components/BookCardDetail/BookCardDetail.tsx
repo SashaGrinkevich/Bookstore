@@ -11,7 +11,7 @@ import {setIsBookCardLoading, setBook,} from "../../store/books/bookscards.reduc
 import Subscribe from "../Subscribe/Subscribe";
 import Tabs, { Tab } from "../Tabs/Tabs";
 import Favorite from "../../components/Icon/icons/Favorite.svg"
-import Favorites from "../Favorites/Favorites";
+import Favorites from "../Favorites/Favorite";
 
 const tabs: Tab[] = [
   {
@@ -20,13 +20,12 @@ const tabs: Tab[] = [
   },
   { label: "Authors", value: "authors" },
   {label:"Reviews", value:"reviews"},
-  { label: "My Favorites", value: "favorites" },
 ];
 
 const BookPostDetail: React.FC = () => {
   const { id: bookId } = useParams();
 
-  const { book,books, isBookLoading: loading } = useSelector(getSlice);
+  const { book, isBookLoading: loading } = useSelector(getSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,8 +54,7 @@ const BookPostDetail: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState(tabs[0].value);
   const handleChangeTab = (tab: Tab) => setActiveTab(tab.value);
-  const favoritesBooks = books.filter((book) => book.isFavorite);
-
+  // const favoritesBooks = books.filter((book) => book.isFavorite);
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -139,18 +137,12 @@ const BookPostDetail: React.FC = () => {
           </div>
           <div className={styles.tabItem}>
           <Tabs
-          className={styles.tabs }
-          activeTab={activeTab}
-          tabs={tabs}
-          onTabClick={handleChangeTab}
+          className={styles.tabs } activeTab={activeTab} tabs={tabs} onTabClick={handleChangeTab}
           /></div>
           <div>
             <Subscribe />
           </div>
-        {!loading && activeTab === "favorites" && favoritesBooks.length > 0 && (
-              <Favorites books={favoritesBooks} />
-          )}</>
-            
+          </>
       )}
     </div>
   );

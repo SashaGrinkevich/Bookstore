@@ -2,18 +2,25 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Book } from "../../api/Books/getBook";
 
-import styles from "./Favorites.module.css";
+import styles from "./Cart.module.css";
 import BookCardPosts from "../BookCards/MediumCard/BookCard";
+import { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
 
-interface FavoritesProps {
-  books: Book[];
+interface CartProps {
+  book: Book[];
 }
 
-const Favorites: React.FC<FavoritesProps> = ({ books }) => {
+const Favorites: React.FC<CartProps> = ({ book }) => {
+  const breadcrumbs: BreadCrumb[] = [
+    {
+      link: "/",
+      label: "Home",
+    },
+  ]
   return (
     <div>
     <ul className={styles.listBookCards}>
-      {books.map((book) => (
+      {book.map((book) => (
         <li className={styles.listBookCard} key={book.isbn13}>
           <NavLink
             style={{ textDecoration: "none" }}

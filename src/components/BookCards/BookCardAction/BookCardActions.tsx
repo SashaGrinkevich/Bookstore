@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import styles from "./BookPostAction.module.css";
-import Button from "../Button/Button";
-import Icon from "../Icon/Icon";
-import { Book } from "../../api/Books/getBook"; 
+import styles from './BookCardActions.module.css';
+import Button from "../../Button/Button";
+import Icon from "../../Icon/Icon";
+import { Book } from "../../../api/Books/getBook"; 
 import {
   togglePostIsFavorite,
-} from "../../store/books/bookscards.reducer";
+} from "../../../store/books/bookscards.reducer";
 
 interface BookActionsProps {
   book: Book;

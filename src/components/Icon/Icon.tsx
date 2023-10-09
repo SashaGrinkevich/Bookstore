@@ -9,7 +9,7 @@ import { ReactComponent as ArrowRight } from "./icons/ArrowUpOne.svg";
 import { ReactComponent as Search } from "./icons/Search.svg";
 import { ReactComponent as Cart } from "./icons/Cart.svg";
 import { ReactComponent as Twitter } from "./icons/Twitter.svg";
-import { ReactComponent as Facebook } from "./icons/facebook.svg";
+import { ReactComponent as Facebook } from "./icons/Facebook.svg";
 import { ReactComponent as User } from "./icons/User.svg";
 
 const icons = {

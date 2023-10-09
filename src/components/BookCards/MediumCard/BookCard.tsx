@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./BookCard.module.css";
 import { Book } from "../../../api/Books/getBook";
 import Typography from "../../Typography/Typography";
+import BookCardActions from "../BookCardAction/BookCardActions";
 
 export interface BookCard {
   book: Book;
@@ -32,6 +33,7 @@ const BookCardPosts: React.FC<BookCard> = ({ book }) => {
           </div>
         </div>
       </div>
+      <BookCardActions book={book}/>
     </div>
   );
 };
