@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { Book, getBook } from "../../api/Books/getBook";
+import {  useParams } from "react-router-dom";
+import {  getBook } from "../../api/Books/getBook";
 
-import styles from "./Cart.module.css";
-import BookCardPosts from "../BookCards/MediumCard/BookCard";
+import styles from "./Favorite.module.css";
 import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
-import { useSelector, useDispatch } from "react-redux";
-import { setIsBookCardLoading, setBook } from "../../store/books/bookscards.reducer";
+import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../../store/books/bookscards.selectors";
+import {
+  setIsBookCardLoading,
+  setBook,
+} from "../../store/books/bookscards.reducer";
 import Typography from "../Typography/Typography";
 
-const Cart: React.FC = () => {
+
+const Favorite: React.FC = () => {
   const { id: bookId } = useParams();
 
   const { book, isBookLoading: loading } = useSelector(getSlice);
@@ -54,4 +57,4 @@ const Cart: React.FC = () => {
   );
 };
 
-export default Cart;
+export default Favorite;

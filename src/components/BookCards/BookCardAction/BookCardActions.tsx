@@ -6,7 +6,8 @@ import Button from "../../Button/Button";
 import Icon from "../../Icon/Icon";
 import { Book } from "../../../api/Books/getBook"; 
 import {
-  togglePostIsFavorite,
+  toggleBookIsCart,
+  toggleBookIsFavorite,
 } from "../../../store/books/bookscards.reducer";
 
 interface BookActionsProps {
@@ -19,7 +20,11 @@ const BookCardActions: React.FC<BookActionsProps> = ({ book }) => {
 
   const handleBookmarkClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(togglePostIsFavorite(book.isbn13));
+    dispatch(toggleBookIsFavorite(book.isbn13));
+  };
+  const handleCartClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dispatch(toggleBookIsCart(book.isbn13));
   };
 
   return (
@@ -32,9 +37,12 @@ const BookCardActions: React.FC<BookActionsProps> = ({ book }) => {
             type="bookmark"
           />
         </Button>
+        <Button variant="standard" onClick={handleCartClick}/>
       </div>
     </div>
   );
 };
 
 export default BookCardActions;
+
+

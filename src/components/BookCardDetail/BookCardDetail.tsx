@@ -11,7 +11,7 @@ import {setIsBookCardLoading, setBook,} from "../../store/books/bookscards.reduc
 import Subscribe from "../Subscribe/Subscribe";
 import Tabs, { Tab } from "../Tabs/Tabs";
 import Favorite from "../../components/Icon/icons/Favorite.svg"
-import Favorites from "../Favorites/Favorite";
+import BookCardActions from "../BookCards/BookCardAction/BookCardActions";
 
 const tabs: Tab[] = [
   {
@@ -46,21 +46,15 @@ const BookPostDetail: React.FC = () => {
       link: "/",
       label: "Home",
     },
-    // {
-    //   link: `/books/${bookId}`,
-    //   label: `Book ${bookId}`,
-    // },
   ];
 
   const [activeTab, setActiveTab] = useState(tabs[0].value);
   const handleChangeTab = (tab: Tab) => setActiveTab(tab.value);
-  // const favoritesBooks = books.filter((book) => book.isFavorite);
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       {loading && "Loading"}
       
-
       {book && (
         <>
           <div className={styles.cardWrapper}>
@@ -70,68 +64,48 @@ const BookPostDetail: React.FC = () => {
             <div className={styles.card}>
               <div className={styles.imgWrapper}>
                 <img className={styles.img} src={book.image} alt={book.title} />
+                
                 <Button variant="icon" className={styles.favButton}>
-                    <img src={Favorite} alt="logo" className={styles.imgFav} />
+                    {/* <img src={Favorite} alt="logo" className={styles.imgFav} /> */}
+                    <BookCardActions  book={book}/>
                 </Button>
               </div>
               <div className={styles.content}>
                 <div className={styles.description}>
-                  <Typography
-                    variant="h3"
-                    color="primary"
-                    className={styles.price}
-                  >
-                    {book.price}
-                  </Typography>
+                  <Typography variant="h3" color="primary" className={styles.price}
+                  >{book.price} </Typography>
                   <div className={styles.rating}>Rating</div>
                 </div>
                 <div className={styles.allInfo}>
                   <div className={styles.info1}>
                     <Typography variant="p" color="primary" className={styles.author}>
-                      Authors
-                    </Typography> 
+                      Authors</Typography>
                     <Typography variant="p" color="primary" className={styles.publisher} 
-                    >
-                      Publisher
-                    </Typography>
+                    > Publisher</Typography>
                     <Typography variant="p" color="primary" className={styles.language}  
-                    >
-                      Language
-                    </Typography>
+                    >Language</Typography>
                     <Typography variant="p" color="primary" className={styles.format}
-                    >
-                      Format
-                    </Typography>
+                    >Format </Typography> 
                   </div>
                   <div className={styles.info2}>
                     <Typography variant="p" color="primary" className={styles.author} 
-                    >
-                      {book.authors}
-                    </Typography>
+                    >{book.authors}</Typography>
                     <Typography variant="p" color="primary" className={styles.publisher}  
-                    >
-                      {book.publisher}
-                    </Typography>
+                    >{book.publisher}</Typography>
                     <Typography variant="p" color="primary" className={styles.language}
-                    >
-                      English
-                    </Typography>
+                    >English </Typography>
                     <Typography variant="p" color="primary" className={styles.format}
-                    >
-                      Paper book / ebook (PDF)
-                    </Typography>
+                    >Paper book / ebook (PDF)</Typography>
                   </div>
                 </div>
                 <Typography variant="p" color="primary" className={styles.more}>
-                  More detailse
+                  More details
                 </Typography>
                 <Button color="secondary" className={styles.buttonAddCart}>
                   Add to cart
                 </Button>
                 <Typography variant="p" color="primary" className={styles.preview}  
-                >
-                  Preview book
-                </Typography>
+                > Preview book </Typography>
               </div>
             </div>
           </div>
@@ -141,6 +115,9 @@ const BookPostDetail: React.FC = () => {
           /></div>
           <div>
             <Subscribe />
+          </div>
+          <div>
+          
           </div>
           </>
       )}

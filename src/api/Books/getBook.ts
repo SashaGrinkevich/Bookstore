@@ -16,6 +16,7 @@ export interface Book {
   rating: boolean;
   desc: string;
   isFavorite: boolean;
+  isCart:boolean;
   pdf: {};
 }
 

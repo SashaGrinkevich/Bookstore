@@ -42,11 +42,18 @@ const booksCardsSlice = createSlice({
     setBook: (state, action: PayloadAction<Book>) => {
       state.book = action.payload;
     },
-    togglePostIsFavorite: (state, action: PayloadAction<Book["isbn13"]>) => {
+    toggleBookIsFavorite: (state, action: PayloadAction<Book["isbn13"]>) => {
       const book = state.books.find((book) => book.isbn13 === action.payload);
 
       if (book) {
         book.isFavorite = !book.isFavorite;
+      }
+    },
+    toggleBookIsCart: (state, action: PayloadAction<Book["isbn13"]>) => {
+      const book = state.books.find((book) => book.isbn13 === action.payload);
+
+      if (book) {
+        book.isCart = !book.isCart;
       }
     },
   },
@@ -57,7 +64,8 @@ export const {
   setBooks,
   setIsBookCardLoading,
   setBook,
-  togglePostIsFavorite
+  toggleBookIsFavorite,
+  toggleBookIsCart,
 } = booksCardsSlice.actions;
 
 export default booksCardsSlice.reducer;

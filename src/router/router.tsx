@@ -21,11 +21,11 @@ const router = createBrowserRouter(
     <>
       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/" element={<Main />} />
-      <Route path="/cart" element={<Cart />}/>
-      <Route path="/favorite" element={<Favorite />} />
-      <Route path="/books/:id" element={<Book />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/books/:id" element={<Book />} />
+      <Route path="/cart" element={<Cart />}/>
+      <Route path="/favorite" element={<Favorite />} />
     </>
   )
 );
