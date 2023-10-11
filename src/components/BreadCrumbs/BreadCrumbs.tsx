@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import Typography from "../Typography/Typography";
 
 import styles from "./BreadCrumbs.module.css";
+import Button from "../Button/Button";
+import ArrowUp from '../../components/Icon/icons/ArrowUpOne.svg'
 
 export interface BreadCrumb {
   link: string;
@@ -24,8 +26,12 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ breadcrumbs }) => {
               variant="span"
               color={i === breadcrumbs.length - 1 ? "secondary" : "primary"}
             >
-              {label}
+             {/* {label}  */}
             </Typography>
+            <Button variant="icon">
+            <img src={ArrowUp} alt="searchImg"  />
+            
+            </Button>
           </NavLink>
         </li>
       ))}

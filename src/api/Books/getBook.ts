@@ -1,5 +1,6 @@
 import { client } from "..";
 export interface Book {
+  
   bookId: any;
   error: boolean;
   title: string;
@@ -15,7 +16,9 @@ export interface Book {
   year: number;
   rating: boolean;
   desc: string;
-  pdf: {};
+  pdf?: {};
+  isFavorite: boolean;
+  isCart:boolean;
 }
 
 type GetBookParams = { id: Book["isbn13"] };

@@ -1,0 +1,106 @@
+
+.title {
+  text-align: left;
+}
+
+.author {
+  margin: 0;
+}
+
+.publisher {
+  margin: 0;
+}
+
+.language {
+  margin: 0;
+}
+
+.format {
+  margin: 0;
+}
+
+.text {
+  padding: 12px;
+}
+
+.imgWrapper {
+  width: 544px;
+  height: 472px;
+  background-color: #FEE9E2;
+  position: relative;
+  
+}
+.favButton{
+  position: absolute;
+  top:10px;
+  right: 10px;
+  
+}
+.imgFav{width: 35px;}
+
+.price {
+  margin: 14px 0;
+}
+
+.img {
+  width: 300px;
+  height: 350px;
+  padding: 61px 122px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.allInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+
+}
+
+.info1 {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 12px 0;
+}
+
+.info2 {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin: 12px 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.buttonAddCart {
+  width: 448px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--border-color);
+}
+.more{
+  margin-bottom: 59px;
+}
+.preview{
+  text-align: center;
+  margin: 40px 144px 0 144px;
+}
+
+.tabItem{
+margin: 72px 0 48px 0;
+}
