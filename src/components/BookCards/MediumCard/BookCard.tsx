@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./BookCard.module.css";
 import { Book } from "../../../api/Books/getBook";
 import Typography from "../../Typography/Typography";
+import Rating from "../../Icon/icons/Rating.svg"
 
 export interface BookCard {
   book: Book;
@@ -28,7 +29,9 @@ const BookCardPosts: React.FC<BookCard> = ({ book }) => {
             <Typography variant="h3" color="primary" className={styles.price}>
               {book.price}
             </Typography>
-            <div className={styles.rating}></div>
+            <div className={styles.rating}>
+              <img src={Rating} alt="Rating" />
+            </div>
           </div>
         </div>
       </div>

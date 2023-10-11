@@ -1,60 +1,48 @@
-import React, { useEffect } from "react";
-import {  useParams } from "react-router-dom";
-import {  getBook } from "../../api/Books/getBook";
+import React from "react";
+import BookCardPosts from "../BookCards/MediumCard/BookCard";
+import { getSlice } from "../../store/books/posts.selectors";
+import { Book } from "../../api/Books/getBook";
+import Typography from "../Typography/Typography";
+import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
+import { useSelector } from "react-redux";
 
 import styles from "./Favorite.module.css";
-import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
-import { useDispatch, useSelector } from "react-redux";
-import { getSlice } from "../../store/books/bookscards.selectors";
-import {
-  setIsBookCardLoading,
-  setBook,
-} from "../../store/books/bookscards.reducer";
-import Typography from "../Typography/Typography";
 
+interface FavoriteBookProps {}
 
-const Favorite: React.FC = () => {
-  const { id: bookId } = useParams();
-
-  const { book, isBookLoading: loading } = useSelector(getSlice);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!bookId) return;
-    dispatch(setIsBookCardLoading(true));
-
-    getBook({ id: bookId })
-      .then((data) => {
-        dispatch(setBook(data));
-      })
-      .finally(() => {
-        dispatch(setIsBookCardLoading(false));
-      });
-  }, [dispatch, bookId]);
-
+const Favorites: React.FC<FavoriteBookProps> = () => {
+  const { isBookLoading: loading } = useSelector(getSlice);
+  const favoriteBooks = useSelector(getSlice);
+  if (favoriteBooks.favoriteBooks.length === 0) {
+    return (
+      <Typography variant="h2" color="primary">
+        "EMPTY"
+      </Typography>
+    );
+  }
   const breadcrumbs: BreadCrumb[] = [
     {
       link: "/",
       label: "Home",
     },
   ];
-  // const { book,books, isBookLoading: loading } = useSelector(getSlice);
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       {loading && "Loading"}
-
-      {book && (
-        <>
-          <div className={styles.cardWrapper}>
-            <Typography className={styles.title} variant="h2">
-              {book.title}
-            </Typography>
-          </div>
-        </>
-      )}
+      <>
+        <div>
+          <ul className={styles.mediumPosts}>
+            {favoriteBooks.map((book: Book) => (
+              <li className={styles.mediumPost} key={book.isbn13}>
+                <BookCardPosts book={book} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </>
     </div>
   );
 };
 
-export default Favorite;
+export default Favorites;

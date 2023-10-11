@@ -2,8 +2,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Book } from "../../api/Books/getBook";
 
 interface BooksCardsState {
+  [x: string]: any;
   isBooksLoading: boolean;
   books: Book[];
+
+  favoriteBooks: Book[];
 
   isBookLoading: boolean;
   book: Book | null;
@@ -15,6 +18,8 @@ interface BooksCardsState {
 const initialState: BooksCardsState = {
   isBooksLoading: false,
   books: [],
+
+  favoriteBooks:[],
 
   isBookLoading: false,
   book: null,
@@ -46,7 +51,7 @@ const booksCardsSlice = createSlice({
       const book = state.books.find((book) => book.isbn13 === action.payload);
 
       if (book) {
-        book.isFavorite = !book.isFavorite;
+        state.favoriteBooks.push(book);
       }
     },
     toggleBookIsCart: (state, action: PayloadAction<Book["isbn13"]>) => {
@@ -56,6 +61,9 @@ const booksCardsSlice = createSlice({
         book.isCart = !book.isCart;
       }
     },
+    setFavorites : (state,action: PayloadAction<Book[]>) =>{
+      state.favoriteBooks= action.payload;
+    }
   },
 });
 
@@ -65,6 +73,7 @@ export const {
   setIsBookCardLoading,
   setBook,
   toggleBookIsFavorite,
+  setFavorites,
   toggleBookIsCart,
 } = booksCardsSlice.actions;
 

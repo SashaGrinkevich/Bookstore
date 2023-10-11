@@ -11,6 +11,7 @@ import { ReactComponent as Cart } from "./icons/Cart.svg";
 import { ReactComponent as Twitter } from "./icons/Twitter.svg";
 import { ReactComponent as Facebook } from "./icons/Facebook.svg";
 import { ReactComponent as User } from "./icons/User.svg";
+import { ReactComponent as Rating } from "./icons/Rating.svg";
 
 const icons = {
   bookmark: Bookmark,
@@ -24,10 +25,11 @@ const icons = {
   twitter: Twitter,
   facebook: Facebook,
   user: User,
+  rating: Rating,
 };
 
-export type IconType = keyof typeof icons; // bookmark | more | plus | minus | arrowLeft|  arrowRight | search | cart | twitter |facebook| user
-// export type IconType = "bookmark" | "more" | 'plus' | 'minus' | 'arrowLeft'|  'arrowRight' | 'search' | 'cart' |' twitter' |'facebook'| 'user';
+export type IconType = keyof typeof icons; // bookmark | more | plus | minus | arrowLeft|  arrowRight | search | cart | twitter |facebook| user| rating
+// export type IconType = "bookmark" | "more" | 'plus' | 'minus' | 'arrowLeft'|  'arrowRight' | 'search' | 'cart' |' twitter' |'facebook'| 'user'|'rating';
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   type: IconType;

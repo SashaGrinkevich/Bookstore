@@ -6,7 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 
 const MainPage = () => {
     return (
-      <MainLayout header={<Header />} main={<Favorite />} footer={<Footer />} />
+      <MainLayout header={<Header />} main={<Favorite    />} footer={<Footer />} />
     );
   };
   
