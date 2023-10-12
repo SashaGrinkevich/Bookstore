@@ -7,22 +7,22 @@ import { Book } from "../../api/Books/getBook";
 import { setFavorites } from "../../store/books/bookscards.reducer";
 
 
-interface FavoritesBookCardProps {
+export interface FavoritesBookCardProps {
   book: Book  ;
 }
 
 const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
   const dispatch = useDispatch();
-  const favoriteBook = useSelector(getSlice);
+  const favoriteBooks = useSelector(getSlice);
 
   useEffect(() => {
-    if (favoriteBook.favoriteBook.length > 0) {
+    if (favoriteBooks.favoriteBook.length > 0) {
       localStorage.setItem(
         "favorites",
-        JSON.stringify(favoriteBook.favoriteBook)
+        JSON.stringify(favoriteBooks.favoriteBooks)
       );
     }
-  }, [favoriteBook.favoriteBook]);
+  }, [favoriteBooks.favoriteBooks]);
 
   useEffect(() => {
     const favBookInLocalStorage = localStorage.getItem("favorites");

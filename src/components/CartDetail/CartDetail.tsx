@@ -1,10 +1,3 @@
-// import { useDispatch, useSelector } from "react-redux";
-// import { Book } from "../../api/Books/getBook";
-// import { useEffect } from "react";
-// import { setCart, setFavorites, toggleBookIsCart } from "../../store/books/bookscards.reducer";
-// import { getSlice } from "../../store/books/bookscards.selectors";
-// import Typography from "../Typography/Typography";
-
 import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import Typography from "../Typography/Typography";
@@ -12,24 +5,25 @@ import styles from './CartDetail.module.css'
 import { Book } from "../../api/Books/getBook";
 import { useEffect } from "react";
 import { setCart } from "../../store/books/bookscards.reducer";
+import Rating from "../../components/Icon/icons/Rating.svg";
 
 
 interface CartBooksProps {
     book: Book  ;
   }
   
-  const CartBook: React.FC<CartBooksProps> = ({ book }) => {
+  export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
     const dispatch = useDispatch();
-    const cart = useSelector(getSlice);
+    const cartBook = useSelector(getSlice);
 
     useEffect(() => {
-      if (cart.length > 0) {
+      if (cartBook.cartBook.length > 0) {
         localStorage.setItem(
           "cart",
-          JSON.stringify(cart)
+          JSON.stringify(cartBook.cartBook)
         );
       }
-    }, [cart]);
+    }, [cartBook.cartBook]);
   
     useEffect(() => {
       const cartInLocalStorage = localStorage.getItem("cart");
@@ -39,6 +33,8 @@ interface CartBooksProps {
     }, [dispatch]);
   
     return (
+      <>
+       
       <div className={styles.wrapper}>
         <div className={styles.card}>
           <div className={styles.imgWrapper}>
@@ -59,11 +55,14 @@ interface CartBooksProps {
               <Typography variant="h3" color="primary" className={styles.price}>
                 {book.price}
               </Typography>
+              <div className={styles.rating}>
+              <img src={Rating} alt="Rating" />
+            </div>
               </div>
             </div>
           </div>
         </div>
-        
+        </>
     );
   };
   
