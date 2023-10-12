@@ -1,18 +1,19 @@
 import React from "react";
-import BookCardPosts from "../BookCards/MediumCard/BookCard";
-import { getSlice } from "../../store/books/posts.selectors";
+import { getSlice } from "../../store/books/bookscards.selectors";
 import { Book } from "../../api/Books/getBook";
 import Typography from "../Typography/Typography";
 import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
 import { useSelector } from "react-redux";
+import FavoritesBookCard from "../FavoritesDetail/FavoriteBookCard";
 
 import styles from "./Favorite.module.css";
 
-interface FavoriteBookProps {}
+ interface FavoriteBookProps {}
 
 const Favorites: React.FC<FavoriteBookProps> = () => {
   const { isBookLoading: loading } = useSelector(getSlice);
   const favoriteBooks = useSelector(getSlice);
+  
   if (favoriteBooks.favoriteBooks.length === 0) {
     return (
       <Typography variant="h2" color="primary">
@@ -27,15 +28,19 @@ const Favorites: React.FC<FavoriteBookProps> = () => {
     },
   ];
   return (
+    
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       {loading && "Loading"}
       <>
+      <Typography variant="h1" color="primary">
+       FAVORITES
+       </Typography>
         <div>
           <ul className={styles.mediumPosts}>
-            {favoriteBooks.map((book: Book) => (
+            {favoriteBooks.favoriteBooks.map((book: Book) => (
               <li className={styles.mediumPost} key={book.isbn13}>
-                <BookCardPosts book={book} />
+                <FavoritesBookCard book={book} />
               </li>
             ))}
           </ul>

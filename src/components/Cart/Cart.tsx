@@ -1,57 +1,55 @@
-import React, { useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { Book, getBook } from "../../api/Books/getBook";
-
+import React from "react";
+import { Book } from "../../api/Books/getBook";
 import styles from "./Cart.module.css";
-import BookCardPosts from "../BookCards/MediumCard/BookCard";
 import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
-import { useSelector, useDispatch } from "react-redux";
-import { setIsBookCardLoading, setBook } from "../../store/books/bookscards.reducer";
+import { useSelector } from "react-redux";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import Typography from "../Typography/Typography";
+import CartBook from "../CartDetail/CartDetail";
 
-const Cart: React.FC = () => {
-  const { id: bookId } = useParams();
+interface CartBook { }
 
-  const { book, isBookLoading: loading } = useSelector(getSlice);
-  const dispatch = useDispatch();
+const Cart: React.FC<CartBook> = () => {
+  const { isBookLoading: loading } = useSelector(getSlice);
+  const cartBook = useSelector(getSlice);
+  
 
-  useEffect(() => {
-    if (!bookId) return;
-    dispatch(setIsBookCardLoading(true));
-
-    getBook({ id: bookId })
-      .then((data) => {
-        dispatch(setBook(data));
-      })
-      .finally(() => {
-        dispatch(setIsBookCardLoading(false));
-      });
-  }, [dispatch, bookId]);
-
+  if (cartBook.cartBook.length === 0) {
+    return (
+      
+      <>
+      <Typography variant="h2" color="primary">
+        "EMPTY"
+      </Typography></>
+    );
+  }
   const breadcrumbs: BreadCrumb[] = [
     {
       link: "/",
       label: "Home",
     },
   ];
-  // const { book,books, isBookLoading: loading } = useSelector(getSlice);
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       {loading && "Loading"}
-
-      {book && (
-        <>
-          <div className={styles.cardWrapper}>
-            <Typography className={styles.title} variant="h2">
-              {book.title}
-            </Typography>
-          </div>
-        </>
-      )}
+      <>
+      <Typography variant="h1" color="primary">
+       YOUR CART
+       </Typography>
+        <div>
+          <ul className={styles.mediumPosts}>
+            {cartBook.cartBook.map((book: Book) => (
+              <li className={styles.cardlist} key={book.isbn13}>
+                <CartBook book={book} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </>
     </div>
   );
 };
 
 export default Cart;
+

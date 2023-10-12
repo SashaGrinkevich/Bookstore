@@ -1,38 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   setFavorites,
-//   toggleBookIsFavorite,
-// } from 
-
-import styles from "./FavoritesBookCard.module.css";
+import styles from "./FavoriteBookCard.module.css";
 import { getSlice } from "../../store/books/bookscards.selectors";
-import Icon from "../Icon/Icon";
 import Typography from "../Typography/Typography";
 import { Book } from "../../api/Books/getBook";
-import { toggleBookIsFavorite, setFavorites } from "../../store/books/bookscards.reducer";
+import { setFavorites } from "../../store/books/bookscards.reducer";
 
 
-interface FavoritesBookCardProps {
+export interface FavoritesBookCardProps {
   book: Book  ;
 }
 
 const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
   const dispatch = useDispatch();
-  const favoriteBook = useSelector(getSlice);
-
-//   const handleRemoveClick = () => {
-//     dispatch(toggleBookIsFavorite(book.isbn13));
-//   };
+  const favoriteBooks = useSelector(getSlice);
 
   useEffect(() => {
-    if (favoriteBook.length > 0) {
+    if (favoriteBooks.favoriteBook.length > 0) {
       localStorage.setItem(
         "favorites",
-        JSON.stringify(favoriteBook)
+        JSON.stringify(favoriteBooks.favoriteBooks)
       );
     }
-  }, [favoriteBook]);
+  }, [favoriteBooks.favoriteBooks]);
 
   useEffect(() => {
     const favBookInLocalStorage = localStorage.getItem("favorites");
@@ -62,8 +52,6 @@ const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
             <Typography variant="h3" color="primary" className={styles.price}>
               {book.price}
             </Typography>
-            {/* <div className={styles.rating}> */}
-              {/* <img src={Rating} alt="Rating" /> */}
             </div>
           </div>
         </div>

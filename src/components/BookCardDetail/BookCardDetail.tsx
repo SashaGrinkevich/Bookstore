@@ -7,18 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setIsBookCardLoading,
   setBook,
-  toggleBookIsFavorite,
+  toggleBookIsCart,
 } from "../../store/books/bookscards.reducer";
-import BookCardActions from "../BookCards/BookCardAction/BookCardActions";
-
 import Typography from "../Typography/Typography";
 import Button from "../Button/Button";
 import Subscribe from "../Subscribe/Subscribe";
 import Tabs, { Tab } from "../Tabs/Tabs";
-import Favorite from "../../components/Icon/icons/Favorite.svg";
 import Rating from "../Icon/icons/Rating.svg";
-
 import styles from "./BookCardDetail.module.css";
+import FavoriteActions from "../BookCards/addFavoriteAction/addFavoriteAction";
+import CartActions from "../BookCards/addCartAction/addCartAction";
 const tabs: Tab[] = [
   {
     label: "Description",
@@ -29,13 +27,18 @@ const tabs: Tab[] = [
 ];
 
 const BookPostDetail: React.FC = () => {
+ 
   const { id: bookId } = useParams();
-  const { book, isBookLoading: loading, favoriteBooks } = useSelector(getSlice);
+  const { book, isBookLoading: loading, favoriteBooks,cartBook } = useSelector(getSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
   }, [favoriteBooks]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartBook));
+  }, [cartBook]);
 
   useEffect(() => {
     if (!bookId) return;
@@ -63,7 +66,6 @@ const BookPostDetail: React.FC = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       {loading && "Loading"}
-
       {book && (
         <>
           <div className={styles.cardWrapper}>
@@ -73,11 +75,8 @@ const BookPostDetail: React.FC = () => {
             <div className={styles.card}>
               <div className={styles.imgWrapper}>
                 <img className={styles.img} src={book.image} alt={book.title} />
-
                 <Button variant="icon" className={styles.favButton} >
-                  
-                  {/* <img src={Favorite} alt="logo" className={styles.imgFav} /> */}
-                  <BookCardActions book={book} />
+                  <FavoriteActions book={book} />
                 </Button>
               </div>
               <div className={styles.content}>
@@ -153,7 +152,7 @@ const BookPostDetail: React.FC = () => {
                   More details
                 </Typography>
                 <Button color="secondary" className={styles.buttonAddCart}>
-                  Add to cart
+                  <CartActions book={book}  />
                 </Button>
                 {!book.pdf && (
                   <div className={styles.previwBook}>
