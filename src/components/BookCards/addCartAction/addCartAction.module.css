@@ -1,0 +1,9 @@
+
+  .buttonAddCart {
+    width: 448px;
+    height: 56px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--border-color);
+    color: var( --icon-color);
+  }
