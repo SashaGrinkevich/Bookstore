@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 import Bookstore from "../../components/Icon/icons/Bookstore.png";
-import Search from "../../components/Icon/icons/Search.svg";
-import User from "../../components/Icon/icons/Frame.svg";
-import Favorite from "../../components/Icon/icons/Favorite.svg";
-import Cart from "../../components/Icon/icons/Cart.svg";
-
 import styles from "./Header.module.css";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import Icon from "../Icon/Icon";
 import { NavLink } from "react-router-dom";
+import { setSearch } from "../../store/books/bookscards.reducer";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 const Header: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchValue(e.target.value);
+
+    const handleClick = () => {
+      dispatch(setSearch(searchValue));
+    };
+
+    // const debouncedSetSearch = useCallback(
+    //   debounce((newSearch: string) => {
+    //     dispatch(setSearch(newSearch));
+    //   }, 800),
+    //   [dispatch]
+    // );
+    
+    // useDidUpdate(() => {
+    //   debouncedSetSearch(searchValue);
+    // }, [debouncedSetSearch, searchValue]);
 
   return (
     <div className={styles.header}>
@@ -29,8 +44,8 @@ const Header: React.FC = () => {
           onChange={handleChange}
           label={""}
         />
-        <Button className={styles.searchButton}>
-          <img src={Search} alt="searchImg" />
+        <Button className={styles.searchButton} onClick={handleClick}>
+          <Icon type={'search'} />
         </Button>
       </div>
       <div className={styles.navButtons}>
@@ -54,3 +69,8 @@ const Header: React.FC = () => {
   );
 };
 export default Header;
+
+function debounce(arg0: (newSearch: string) => void, arg1: number): any {
+  throw new Error("Function not implemented.");
+}
+

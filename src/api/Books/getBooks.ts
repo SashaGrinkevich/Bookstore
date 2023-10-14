@@ -1,11 +1,16 @@
 import { Book } from "./getBook";
 import { client } from "..";
 
-type GetBooksSuccessResponse = Book[];
+// type GetPostsParams = { limit: number; offset: number; search?: string };
+
+type GetBooksSuccessResponse = Book []
 
 
-export const getBooks = (): Promise<GetBooksSuccessResponse> => {
+export const getBooks = (
+  // params: GetPostsParams
+): Promise<GetBooksSuccessResponse> => {
+  // const { limit, offset, search } = params;
   return client
-    .get(`/new`)
+    .get(`/new`,)
     .then((res) => res.data.books);
 };

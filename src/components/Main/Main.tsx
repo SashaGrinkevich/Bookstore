@@ -10,24 +10,37 @@ import { getSlice } from "../../store/books/bookscards.selectors";
 import {
   setIsBooksCardsLoading,
   setBooks,
+  incOffset,
 } from "../../store/books/bookscards.reducer";
+import Pagination from "../Pagination/Pagination";
 
 const Main: React.FC = () => {
-  const { books, isBooksLoading: loading } = useSelector(getSlice);
+  const {
+    books,
+    isBooksLoading: loading,
+    count,
+    limit,
+    // offset,
+    // search,
+  } = useSelector(getSlice);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+    useEffect(() => {
+
     dispatch(setIsBooksCardsLoading(true));
 
     getBooks()
       .then((data) => {
-        dispatch(setBooks(data))
+        dispatch(setBooks(data));
       })
       .finally(() => {
         dispatch(setIsBooksCardsLoading(false));
       });
   }, [dispatch]);
+  const handleIncOffset = () => {
+    dispatch(incOffset());
+  };
   return (
     <>
       {loading && "Loading"}
@@ -52,6 +65,9 @@ const Main: React.FC = () => {
                 </li>
               ))}
             </ul>
+          </div>
+          <div>
+            <Pagination total={Math.ceil(count / limit)} />
           </div>
           <div>
             <Subscribe />

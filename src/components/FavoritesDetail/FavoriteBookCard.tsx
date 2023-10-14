@@ -16,7 +16,7 @@ const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
   const favoriteBooks = useSelector(getSlice);
 
   useEffect(() => {
-    if (favoriteBooks.favoriteBook.length > 0) {
+    if (favoriteBooks.favoriteBooks.length > 0) {
       localStorage.setItem(
         "favorites",
         JSON.stringify(favoriteBooks.favoriteBooks)
