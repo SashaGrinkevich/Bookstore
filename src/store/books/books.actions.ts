@@ -9,13 +9,23 @@ export const getBooksThunk = createAsyncThunk(
   "books/getBooksThunk",
   async (param, thunkApi) => {
     const { getState } = thunkApi;
+    const { limit,offset} = getSlice(getState() as RootState);
+
+    return getBooks({ limit, offset });
+  }
+);
+
+export const searchBooksThunk = createAsyncThunk(
+  "books/getBooksThunk",
+  async (param, thunkApi) => {
+    const { getState } = thunkApi;
     const { limit,offset,search} = getSlice(getState() as RootState);
 
-    return getBooks();
+    return getBooks({ limit, offset, search });
   }
 );
 
 export const getBookThunk = createAsyncThunk(
-  "posts/getPostThunk",
+  "books/getBostThunk",
   (id: Book["isbn13"]) => getBook({ id })
 );

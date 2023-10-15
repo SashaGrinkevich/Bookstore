@@ -13,6 +13,8 @@ import {
   incOffset,
 } from "../../store/books/bookscards.reducer";
 import Pagination from "../Pagination/Pagination";
+import { AppDispatch } from "../../store";
+import { searchBooksThunk } from "../../store/books/books.actions";
 
 const Main: React.FC = () => {
   const {
@@ -20,17 +22,26 @@ const Main: React.FC = () => {
     isBooksLoading: loading,
     count,
     limit,
-    // offset,
-    // search,
+    offset,
+    search,
   } = useSelector(getSlice);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-    useEffect(() => {
+  useEffect(() => {
+    if (search.length > 0) {
+      dispatch(searchBooksThunk)
+    } else {
+      dispatch(searchBooksThunk());
+    }
+  }, [dispatch, search, limit, offset]);
 
+
+
+  useEffect(() => {
     dispatch(setIsBooksCardsLoading(true));
 
-    getBooks()
+    getBooks({ limit, offset, search })
       .then((data) => {
         dispatch(setBooks(data));
       })
@@ -38,9 +49,10 @@ const Main: React.FC = () => {
         dispatch(setIsBooksCardsLoading(false));
       });
   }, [dispatch]);
-  const handleIncOffset = () => {
-    dispatch(incOffset());
-  };
+
+  // const handleIncOffset = () => {
+  //   dispatch(incOffset());
+  // };
   return (
     <>
       {loading && "Loading"}
@@ -79,3 +91,4 @@ const Main: React.FC = () => {
 };
 
 export default Main;
+
