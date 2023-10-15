@@ -7,11 +7,11 @@ interface PaginationProps {
 }
 
 const generatePagination = (page: number, total: number) => {
-  if (total < 7) {
+  if (total < 6) {
     return Array.from(Array(total), (_, i) => i + 1);
   }
 
-  if (page < 5) {
+  if (page < 6) {
     return [1, 2, 3, 4, 5, "...", total];
   }
 
@@ -33,7 +33,6 @@ const Pagination: React.FC<PaginationProps> = ({ page, total, onClick }) => {
         <React.Fragment key={index}>
           {typeof item === "number" ? (
             <button
-              style={{ backgroundColor: item === activePage ? "red" : "white" }}
               onClick={() => {
                 setActivePage(item);
                 onClick?.(item);

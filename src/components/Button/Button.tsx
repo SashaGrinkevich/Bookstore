@@ -9,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary"  | "secondary";
   variant?: "standard" | "icon";
   children?: React.ReactNode;
-  type?: 'submit' | 'reset' | 'button' | undefined;
+  type?: 'submit' | 'reset' | 'button' ;
 }
 
 const Button: React.FC<ButtonProps> = ({

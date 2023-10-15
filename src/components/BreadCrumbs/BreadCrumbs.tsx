@@ -26,7 +26,6 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ breadcrumbs }) => {
               variant="span"
               color={i === breadcrumbs.length - 1 ? "secondary" : "primary"}
             >
-             {/* {label}  */}
             </Typography>
             <Button variant="icon">
             <img src={ArrowUp} alt="searchImg"  />

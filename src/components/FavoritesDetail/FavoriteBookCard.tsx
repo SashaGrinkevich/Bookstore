@@ -6,9 +6,8 @@ import Typography from "../Typography/Typography";
 import { Book } from "../../api/Books/getBook";
 import { setFavorites } from "../../store/books/bookscards.reducer";
 
-
 export interface FavoritesBookCardProps {
-  book: Book  ;
+  book: Book;
 }
 
 const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
@@ -16,7 +15,7 @@ const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
   const favoriteBooks = useSelector(getSlice);
 
   useEffect(() => {
-    if (favoriteBooks.favoriteBook.length > 0) {
+    if (favoriteBooks.favoriteBooks.length > 0) {
       localStorage.setItem(
         "favorites",
         JSON.stringify(favoriteBooks.favoriteBooks)
@@ -32,7 +31,7 @@ const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
   }, [dispatch]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapperFavorite}>
       <div className={styles.card}>
         <div className={styles.imgWrapper}>
           <img className={styles.img} src={book.image} alt={book.title} />
@@ -48,15 +47,14 @@ const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
           >
             {book.subtitle}
           </Typography>
-          <div className={styles.info}>
-            <Typography variant="h3" color="primary" className={styles.price}>
-              {book.price}
-            </Typography>
-            </div>
-          </div>
+        </div>
+        <div className={styles.info}>
+          <Typography variant="h2" color="primary" className={styles.price}>
+            {book.price}
+          </Typography>
         </div>
       </div>
-      
+    </div>
   );
 };
 
