@@ -12,19 +12,12 @@ import {
 import Typography from "../Typography/Typography";
 import Button from "../Button/Button";
 import Subscribe from "../Subscribe/Subscribe";
-import Tabs, { Tab } from "../Tabs/Tabs";
 import Rating from "../Icon/icons/Rating.svg";
 import styles from "./BookCardDetail.module.css";
 import FavoriteActions from "../BookCards/addFavoriteAction/addFavoriteAction";
 import CartActions from "../BookCards/addCartAction/addCartAction";
-const tabs: Tab[] = [
-  {
-    label: "Description",
-    value: "description",
-  },
-  { label: "Authors", value: "authors" },
-  { label: "Reviews", value: "reviews" },
-];
+import { useDidUpdate } from "../../hooks/useDidUpdate";
+import TabsCardDetail from "../TabsCardDetail/TabsCardDetail";
 
 const BookPostDetail: React.FC = () => {
  
@@ -36,7 +29,7 @@ const BookPostDetail: React.FC = () => {
     localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
   }, [favoriteBooks]);
 
-  useEffect(() => {
+  useDidUpdate(() => {
     localStorage.setItem("cart", JSON.stringify(cartBook));
   }, [cartBook]);
 
@@ -60,8 +53,6 @@ const BookPostDetail: React.FC = () => {
     },
   ];
 
-  const [activeTab, setActiveTab] = useState(tabs[0].value);
-  const handleChangeTab = (tab: Tab) => setActiveTab(tab.value);
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -81,12 +72,8 @@ const BookPostDetail: React.FC = () => {
               </div>
               <div className={styles.content}>
                 <div className={styles.description}>
-                  <Typography
-                    variant="h3"
-                    color="primary"
-                    className={styles.price}
-                  >
-                    {book.price}{" "}
+                  <Typography variant="h3" color="primary" className={styles.price}>
+                    {book.price}
                   </Typography>
                   <div className={styles.rating}>
                     <img src={Rating} alt="" />
@@ -94,57 +81,27 @@ const BookPostDetail: React.FC = () => {
                 </div>
                 <div className={styles.allInfo}>
                   <div className={styles.info1}>
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.author}
-                      children={" Authors"}
+                    <Typography variant="p" color="primary"className={styles.author} children={" Authors"}
                     />
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.publisher}
-                      children={" Publisher"}
+                    <Typography variant="p" color="primary" className={styles.publisher} children={" Publisher"}
                     />
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.language}
-                      children={" Language"}
+                    <Typography variant="p"color="primary" className={styles.language} children={" Language"}
                     />
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.format}
-                      children={" Format"}
+                    <Typography variant="p" color="primary" className={styles.format} children={" Format"} 
                     />
                   </div>
                   <div className={styles.info2}>
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.author}
+                    <Typography variant="p"color="primary"className={styles.author}  
                     >
                       {book.authors}
                     </Typography>
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.publisher}
+                    <Typography variant="p" color="primary"className={styles.publisher} 
                     >
                       {book.publisher}
                     </Typography>
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.language}
-                      children={" English"}
+                    <Typography variant="p" color="primary"  className={styles.language}  children={" English"}
                     />
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.format}
-                      children={" Paper book / ebook (PDF)"}
+                    <Typography variant="p" color="primary" className={styles.format} children={" Paper book / ebook (PDF)"} 
                     />
                   </div>
                 </div>
@@ -162,11 +119,7 @@ const BookPostDetail: React.FC = () => {
                         "https://itbook.store/files/9781617294136/chapter5.pdf"
                       }
                     >
-                      <Typography
-                        variant="p"
-                        color="primary"
-                        className={styles.preview}
-                        children={"Preview book"}
+                      <Typography variant="p" color="primary" className={styles.preview} children={"Preview book"} 
                       />
                     </a>
                   </div>
@@ -175,21 +128,7 @@ const BookPostDetail: React.FC = () => {
             </div>
           </div>
           <div className={styles.tabItem}>
-            <Tabs
-              className={styles.tabs}
-              activeTab={activeTab}
-              tabs={tabs}
-              onTabClick={handleChangeTab}
-            />
-            {!loading && activeTab === "description" && (
-              <Typography variant="p" children={book.desc} />
-            )}
-            {!loading && activeTab === "authors" && (
-              <Typography variant="p" children={book.authors} />
-            )}
-            {!loading && activeTab === "reviews" && (
-              <Typography variant="p" children={book.subtitle} />
-            )}
+            <TabsCardDetail book={book} />
           </div>
           <div>
             <Subscribe />

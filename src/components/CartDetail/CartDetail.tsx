@@ -1,41 +1,36 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import Typography from "../Typography/Typography";
-import styles from './CartDetail.module.css'
+import styles from "./CartDetail.module.css";
 import { Book } from "../../api/Books/getBook";
 import { useEffect } from "react";
 import { setCart } from "../../store/books/bookscards.reducer";
-import Rating from "../../components/Icon/icons/Rating.svg";
-
+import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 interface CartBooksProps {
-    book: Book  ;
-  }
-  
-  export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
-    const dispatch = useDispatch();
-    const cartBook = useSelector(getSlice);
+  book: Book;
+}
 
-    useEffect(() => {
-      if (cartBook.cartBook.length > 0) {
-        localStorage.setItem(
-          "cart",
-          JSON.stringify(cartBook.cartBook)
-        );
-      }
-    }, [cartBook.cartBook]);
-  
-    useEffect(() => {
-      const cartInLocalStorage = localStorage.getItem("cart");
-      if (cartInLocalStorage) {
-        dispatch(setCart(JSON.parse(cartInLocalStorage)));
-      }
-    }, [dispatch]);
-  
-    return (
-      <>
-       
-      <div className={styles.wrapper}>
+export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
+  const dispatch = useDispatch();
+  const cartBook = useSelector(getSlice);
+
+  useDidUpdate(() => {
+    if (cartBook.cartBook.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cartBook.cartBook));
+    }
+  }, [cartBook.cartBook]);
+
+  useDidUpdate(() => {
+    const cartInLocalStorage = localStorage.getItem("cart");
+    if (cartInLocalStorage) {
+      dispatch(setCart(JSON.parse(cartInLocalStorage)));
+    }
+  }, [dispatch]);
+
+  return (
+    <>
+      <div className={styles.wrapperCart}>
         <div className={styles.card}>
           <div className={styles.imgWrapper}>
             <img className={styles.img} src={book.image} alt={book.title} />
@@ -51,19 +46,16 @@ interface CartBooksProps {
             >
               {book.subtitle}
             </Typography>
-            <div className={styles.info}>
-              <Typography variant="h3" color="primary" className={styles.price}>
-                {book.price}
-              </Typography>
-              <div className={styles.rating}>
-              <img src={Rating} alt="Rating" />
-            </div>
-              </div>
-            </div>
+          </div>
+          <div className={styles.info}>
+            <Typography variant="h2" color="primary" className={styles.price}>
+              {book.price}
+            </Typography>
           </div>
         </div>
-        </>
-    );
-  };
-  
-  export default CartBook;
+      </div>
+    </>
+  );
+};
+
+export default CartBook;

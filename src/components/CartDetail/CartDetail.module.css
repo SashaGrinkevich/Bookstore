@@ -1,32 +1,33 @@
-
-
+.wrapperCart{
+  display: flex;
+  justify-content: space-between;
+}
+.card{
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-around;
+}
 .imgWrapper {
-    padding: 1px 63px;
-    margin-bottom: 12px;
     background-color: bisque;
-  }
-  
-  .img {
-    width: 226px;
-    
-  
-  
+    width: 256px;
+
   }
   .title{
-    margin: 24px 0 8px 0;
-    text-align: left;
-    height: 64px;
-    
+    margin: 0;
   }
-  .subtitle{
-    text-align: left;
-    height: 24px;
-  }
-  
-  .info {
-    display: flex;
-    justify-content: space-between;
+  .price{
+    padding: 42px 0 42px 100px;
     align-items: center;
-    height: 32px;
+
+
   }
-  
+  .img {
+    width: 163.9px;
+    padding: 0 46px;
+  }
+.description{
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 0 32px;
+  margin: 0;
+}

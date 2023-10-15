@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react";
 
 export const useDidUpdate = (
-  cb: () => void | (() => void),
+  CallBack: () => void | (() => void),
   deps: unknown[]
 ) => {
   const mounted = useRef(false);
 
   useEffect(() => {
     if (mounted.current) {
-      const unmountedCb = cb();
-      return unmountedCb?.();
+      const unmountedCallBack = CallBack();
+      return unmountedCallBack?.();
     } else {
       mounted.current = true;
     }
