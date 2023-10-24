@@ -14,7 +14,7 @@ import {
 } from "../../store/books/bookscards.reducer";
 import Pagination from "../Pagination/Pagination";
 import { AppDispatch } from "../../store";
-import { searchBooksThunk } from "../../store/books/books.actions";
+import { getBooksThunk } from "../../store/books/books.actions";
 
 const Main: React.FC = () => {
   const {
@@ -25,16 +25,19 @@ const Main: React.FC = () => {
     offset,
     search,
   } = useSelector(getSlice);
-
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (search.length > 0) {
-      dispatch(searchBooksThunk)
-    } else {
-      dispatch(searchBooksThunk());
-    }
-  }, [dispatch, search, limit, offset]);
+    dispatch(getBooksThunk());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (search.length > 0) {
+  //     dispatch(getSearchBooksThunk)
+  //   } else {
+  //     dispatch(getBooksThunk());
+  //   }
+  // }, [dispatch, search]);
 
 
 
@@ -79,7 +82,7 @@ const Main: React.FC = () => {
             </ul>
           </div>
           <div>
-            <Pagination total={Math.ceil(count / limit)} />
+            <Pagination pages={Math.ceil(count / limit)} />
           </div>
           <div>
             <Subscribe />

@@ -2,9 +2,6 @@ import { Middleware, configureStore } from "@reduxjs/toolkit";
 import bookcardReducer from "./books/bookscards.reducer";
 
 const logger: Middleware = (store) => (next) => (action) => {
-    console.log("==============>", action);
-    console.log("==============>", store.getState());
-    // store.dispatch(action);
     next(action);
   };
 
