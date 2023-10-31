@@ -3,29 +3,32 @@ import { RootState } from "..";
 import { getBooks } from "../../api/Books/getBooks";
 import { getSlice } from "./bookscards.selectors";
 import { Book, getBook } from "../../api/Books/getBook";
+import { getBooksSearch } from "../../api/Books/getSearchBooks";
+
 
 
 export const getBooksThunk = createAsyncThunk(
   "books/getBooksThunk",
-  async (param, thunkApi) => {
-    const { getState } = thunkApi;
-    const { limit,offset} = getSlice(getState() as RootState);
+  async () => {
+    // const { getState } = thunkApi;
+    // const { limit,offset} = getSlice(getState() as RootState);
 
-    return getBooks({ limit, offset });
+    return getBooks();
   }
 );
 
-export const searchBooksThunk = createAsyncThunk(
-  "books/getBooksThunk",
-  async (param, thunkApi) => {
-    const { getState } = thunkApi;
-    const { limit,offset,search} = getSlice(getState() as RootState);
-
-    return getBooks({ limit, offset, search });
-  }
-);
 
 export const getBookThunk = createAsyncThunk(
   "books/getBostThunk",
   (id: Book["isbn13"]) => getBook({ id })
+);
+
+export const getSearchBooksThunk = createAsyncThunk(
+  "books/getSearchBookThunk",
+  async (param, thunkApi) => {
+    const { getState } = thunkApi;
+    const { page, search } = getSlice(getState() as RootState);
+
+    return getBooksSearch({ page, search });
+  }
 );

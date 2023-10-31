@@ -1,97 +1,87 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Subscribe from "../Subscribe/Subscribe";
 import Typography from "../Typography/Typography";
 import styles from "./Main.module.css";
-import { getBooks } from "../../api/Books/getBooks";
 import { NavLink } from "react-router-dom";
 import BookCardPosts from "../BookCards/MediumCard/BookCard";
 import { getSlice } from "../../store/books/bookscards.selectors";
-import {
-  setIsBooksCardsLoading,
-  setBooks,
-  incOffset,
-} from "../../store/books/bookscards.reducer";
-import Pagination from "../Pagination/Pagination";
 import { AppDispatch } from "../../store";
-import { getBooksThunk } from "../../store/books/books.actions";
+import {
+  getBooksThunk,
+  getSearchBooksThunk,
+} from "../../store/books/books.actions";
+import Subscribe from "../Subscribe/Subscribe";
 
 const Main: React.FC = () => {
-  const {
-    books,
-    isBooksLoading: loading,
-    count,
-    limit,
-    offset,
-    search,
-  } = useSelector(getSlice);
+  const { books, isBooksLoading: loading, search } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getBooksThunk());
-  }, [dispatch]);
+    if (search.length > 0) {
+      dispatch(getSearchBooksThunk());
+    } else {
+      dispatch(getBooksThunk());
+    }
+  }, [dispatch, search]);
 
-  // useEffect(() => {
-  //   if (search.length > 0) {
-  //     dispatch(getSearchBooksThunk)
-  //   } else {
-  //     dispatch(getBooksThunk());
-  //   }
-  // }, [dispatch, search]);
-
-
-
-  useEffect(() => {
-    dispatch(setIsBooksCardsLoading(true));
-
-    getBooks({ limit, offset, search })
-      .then((data) => {
-        dispatch(setBooks(data));
-      })
-      .finally(() => {
-        dispatch(setIsBooksCardsLoading(false));
-      });
-  }, [dispatch]);
-
-  // const handleIncOffset = () => {
-  //   dispatch(incOffset());
-  // };
   return (
-    <>
-      {loading && "Loading"}
-
-      {!loading && books.length > 0 && (
+    <div>
+      {!search ? (
         <>
-          <div className={styles.wrapperMain}>
-            <Typography variant="h1" font="Bebas Neue" className={styles.title}>
-              New Releases Books
-            </Typography>
-          </div>
+          <Typography
+            className={styles.wrapperMain}
+            variant="h1"
+            color="primary"
+          >
+            New Releases Books
+          </Typography>
+          <ul className={styles.listBookCards}>
+            {books.map((book) => (
+              <li className={styles.listBookCard} key={book.isbn13}>
+                <NavLink
+                  to={`/books/${book.isbn13}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <BookCardPosts book={book} />
+                </NavLink>
+              </li>
+            ))}
+          </ul>
           <div>
-            <ul className={styles.listBookCards}>
-              {books.map((book) => (
-                <li className={styles.listBookCard} key={book.isbn13}>
-                  <NavLink
-                    style={{ textDecoration: "none" }}
-                    to={`/books/${book.isbn13}`}
-                  >
-                    <BookCardPosts book={book} />
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+           {/* <Pagination pages={Math.ceil(count / limit)} /> */}
+        </div>
           <div>
-            <Pagination pages={Math.ceil(count / limit)} />
+            <Subscribe />
           </div>
+        </>
+      ) : (
+        <>
+          <Typography
+            className={styles.title_page}
+            variant="h1"
+            color="primary"
+          >
+            Search results: "{search}"
+          </Typography>
+          <ul className={styles.listBookCards}>
+            {books.map((book) => (
+              <li className={styles.listBookCard} key={book.isbn13}>
+                <NavLink
+                  to={`/books/${book.isbn13}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <BookCardPosts book={book} />
+                </NavLink>
+              </li>
+            ))}
+          </ul>
           <div>
             <Subscribe />
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 
 export default Main;
-

@@ -5,7 +5,7 @@ import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
 import { useDispatch, useSelector } from "react-redux";
 import Typography from "../Typography/Typography";
 import FavoritesBookCard from "../FavoritesDetail/FavoriteBookCard";
-import { setFavorites } from "../../store/books/bookscards.reducer";
+import { setFavorite } from "../../store/books/bookscards.reducer";
 
 import styles from "./Favorite.module.css";
 
@@ -19,7 +19,7 @@ const Favorites: React.FC<FavoriteBookProps> = () => {
   useEffect(()=>{
     const favBookInLocalStorage = localStorage.getItem('favorites');
     if (favBookInLocalStorage) {
-      dispatch(setFavorites(JSON.parse(favBookInLocalStorage)))
+      dispatch(setFavorite(JSON.parse(favBookInLocalStorage)))
     }
   },[dispatch])
   

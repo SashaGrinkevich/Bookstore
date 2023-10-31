@@ -4,7 +4,7 @@ import styles from "./FavoriteBookCard.module.css";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import Typography from "../Typography/Typography";
 import { Book } from "../../api/Books/getBook";
-import { setFavorites } from "../../store/books/bookscards.reducer";
+import { setFavorite } from "../../store/books/bookscards.reducer";
 
 export interface FavoritesBookCardProps {
   book: Book;
@@ -26,7 +26,7 @@ const FavoritesBookCard: React.FC<FavoritesBookCardProps> = ({ book }) => {
   useEffect(() => {
     const favBookInLocalStorage = localStorage.getItem("favorites");
     if (favBookInLocalStorage) {
-      dispatch(setFavorites(JSON.parse(favBookInLocalStorage)));
+      dispatch(setFavorite(JSON.parse(favBookInLocalStorage)));
     }
   }, [dispatch]);
 

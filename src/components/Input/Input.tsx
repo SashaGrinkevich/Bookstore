@@ -4,7 +4,7 @@ import clsx from "clsx";
 import styles from "./Input.module.css";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   error?: boolean;
   description?: string;
 }
