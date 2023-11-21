@@ -40,7 +40,7 @@ const Favorites: React.FC<FavoriteBookProps> = () => {
     
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
-      {loading && "Loading"}
+      {loading && (
       <>
       <Typography variant="h1" color="primary">
        FAVORITES
@@ -54,7 +54,7 @@ const Favorites: React.FC<FavoriteBookProps> = () => {
             ))}
           </ul>
         </div>
-      </>
+      </>)}
     </div>
   );
 };

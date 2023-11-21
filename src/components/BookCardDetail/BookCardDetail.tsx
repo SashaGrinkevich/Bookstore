@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getBook } from "../../api/Books/getBook";
 import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -48,7 +48,7 @@ const BookPostDetail: React.FC = () => {
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
-      {loading && "Loading"}
+      {/* {loading && "Loading"} */}
       {book && (
         <>
           <div className={styles.cardWrapper}>

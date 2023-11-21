@@ -1,5 +1,4 @@
 import {
-  ActionReducerMapBuilder,
   PayloadAction,
   createSlice,
 } from "@reduxjs/toolkit";
@@ -11,7 +10,7 @@ import {
 } from "./books.actions";
 
 interface BooksCardsState {
-  [x: string]: any;
+  
   isBooksLoading: boolean;
   books: Book[];
 
@@ -21,13 +20,13 @@ interface BooksCardsState {
   isBookLoading: boolean;
   book: Book | null;
 
-  limit: number;
-  offset: number;
-
+  total:string;
   search: string;
+  searchBooks: Book[];
   page: number;
   isSearchBooksLoading: boolean;
-  searchedTotal: string;
+ 
+  activePage: number;
 }
 
 const initialState: BooksCardsState = {
@@ -40,32 +39,24 @@ const initialState: BooksCardsState = {
   isBookLoading: false,
   book: null,
 
-  limit: 10,
-  offset: 0,
-
+  total: "",
   search: "",
+  searchBooks: [],
   page: 1,
   isSearchBooksLoading: false,
-  searchedTotal: "",
+
+  activePage: 1,
 };
 
 const booksCardsSlice = createSlice({
   name: "books",
   initialState,
   reducers: {
-    incOffset: (state) => {
-      const nextOffset = state.offset + initialState.limit;
-      if (nextOffset < state.count) {
-        state.offset = nextOffset;
-      } else {
-        state.offset = state.count;
-      }
-    },
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;
-      state.limit = initialState.limit; // 10
-      state.offset = initialState.offset; // 0
-      // state.books = initialState.books; // []
+    },
+    setActivePage: (state, action: PayloadAction<number>) => {
+      state.activePage = action.payload;
     },
     setIsBooksCardsLoading: (state, action: PayloadAction<boolean>) => {
       state.isBooksLoading = action.payload;
@@ -92,7 +83,7 @@ const booksCardsSlice = createSlice({
       state.favoriteBooks = action.payload;
     },
     setCart: (state, action: PayloadAction<Book[]>) => {
-      state.cartBooks = action.payload;
+      state.cartBook = action.payload;
     },
     toggleBookIsCart: (state, action: PayloadAction<Book["isbn13"]>) => {
       const book = state.books.find((book) => book.isbn13 === action.payload);
@@ -125,6 +116,8 @@ const booksCardsSlice = createSlice({
     builder.addCase(getSearchBooksThunk.fulfilled, (state, action) => {
       state.isSearchBooksLoading = false;
       state.books = action.payload.books;
+      state.searchBooks = action.payload.books;
+      state.total = action.payload.total;
     });
   },
 });
@@ -139,6 +132,7 @@ export const {
   toggleBookIsCart,
   setCart,
   setSearch,
+  setActivePage
 } = booksCardsSlice.actions;
 
 export default booksCardsSlice.reducer;

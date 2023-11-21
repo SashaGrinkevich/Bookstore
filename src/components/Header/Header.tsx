@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Bookstore from "../../components/Icon/icons/Bookstore.png";
 import styles from "./Header.module.css";
 import Button from "../Button/Button";
@@ -6,9 +6,8 @@ import Input from "../Input/Input";
 import Icon from "../Icon/Icon";
 import { NavLink } from "react-router-dom";
 import { setSearch } from "../../store/books/bookscards.reducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 const Header: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");

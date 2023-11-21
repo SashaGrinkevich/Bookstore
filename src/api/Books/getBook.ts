@@ -1,6 +1,6 @@
 import { client } from "..";
+
 export interface Book {
-  
   bookId: any;
   error: boolean;
   title: string;
@@ -20,6 +20,8 @@ export interface Book {
   isFavorite: boolean;
   isCart:boolean;
   
+  
+  
 }
 
 type GetBookParams = { id: Book["isbn13"] };
@@ -29,5 +31,7 @@ type GetBookSuccessResponse = Book;
 export const getBook = ({
   id,
 }: GetBookParams): Promise<GetBookSuccessResponse> => {
-  return client.get(`/books/${id}`).then((res) => res.data);
+  return client
+  .get(`/books/${id}`)
+  .then((res) => res.data);
 };

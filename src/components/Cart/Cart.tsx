@@ -40,7 +40,7 @@ const Cart: React.FC<CartBook> = () => {
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
-      {loading && "Loading"}
+      {loading && (
       <>
       <Typography variant="h1" color="primary">
        YOUR CART
@@ -54,7 +54,7 @@ const Cart: React.FC<CartBook> = () => {
             ))}
           </ul>
         </div>
-      </>
+      </>)}
     </div>
   );
 };

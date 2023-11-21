@@ -1,8 +1,10 @@
 import { Book } from "./getBook";
 import { client } from "..";
+import axios from "axios";
 
 
-type GetBooksSuccessResponse = Book []
+
+type GetBooksSuccessResponse = Book[];
 
 
 export const getBooks = (

@@ -1,38 +1,28 @@
-.paginationWrapper {
+.buttons {
+  border: none;
+  font-size: 18px;
+  background-color: transparent;
+}
+.buttons:hover {
+  cursor: pointer;
+}
+
+.buttonsContainer {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
-
 }
 
-.paginationArrow {
+.nextAndPrevBut {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+}
+.nextAndPrevBut:hover {
+  cursor: pointer;
+}
+.numbersContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-
-.numbersWrapper {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-
-}
-
-.paginationBtn,
-.paginationArrow {
-  font-family: "Helios Antique", sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--text-primary);
-}
-
-.carouselArrows {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
+  flex-direction: row;
+  gap: 30px;
 }

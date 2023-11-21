@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Typography from "../Typography/Typography";
 import styles from "./Main.module.css";
-import { NavLink } from "react-router-dom";
-import BookCardPosts from "../BookCards/MediumCard/BookCard";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import { AppDispatch } from "../../store";
 import {
@@ -11,77 +9,85 @@ import {
   getSearchBooksThunk,
 } from "../../store/books/books.actions";
 import Subscribe from "../Subscribe/Subscribe";
+import Pagination from "../Pagination/Pagination";
+import { setActivePage } from "../../store/books/bookscards.reducer";
+import AllBooks from "../AllBooks/AllBooks";
 
 const Main: React.FC = () => {
-  const { books, isBooksLoading: loading, search } = useSelector(getSlice);
+  const { books,
+    isBooksLoading: loading,
+    isSearchBooksLoading: searchLoading,
+    search ,
+    total,
+    activePage,
+    searchBooks,
+  } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
 
+   useEffect(() => {
+    dispatch(getBooksThunk());
+  }, [dispatch]);
+
+  const handlePaginationClick = (page: number) => {
+    dispatch(setActivePage(page));
+  };
   useEffect(() => {
-    if (search.length > 0) {
-      dispatch(getSearchBooksThunk());
-    } else {
-      dispatch(getBooksThunk());
-    }
-  }, [dispatch, search]);
+    dispatch(
+      getSearchBooksThunk({ search: search, page: String(activePage) })
+    );
+  }, [dispatch,activePage]);
 
   return (
-    <div>
-      {!search ? (
-        <>
-          <Typography
-            className={styles.wrapperMain}
-            variant="h1"
-            color="primary"
-          >
-            New Releases Books
-          </Typography>
-          <ul className={styles.listBookCards}>
-            {books.map((book) => (
-              <li className={styles.listBookCard} key={book.isbn13}>
-                <NavLink
-                  to={`/books/${book.isbn13}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <BookCardPosts book={book} />
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-          <div>
-           {/* <Pagination pages={Math.ceil(count / limit)} /> */}
+    <>
+      {search === "" && (
+        <div>
+          <div className={styles.title}>
+            <Typography variant="h1">
+              NEW RELEASES BOOKS
+            </Typography>
+          </div>
+
+          <div className={styles.books}>
+            {loading && "Loading"}
+            {!loading && books.length > 0 && <AllBooks books={books} />}
+          </div>
+          <div className={styles.subscribeWrapper}>
+            <Subscribe />
+          </div>
         </div>
-          <div>
-            <Subscribe />
-          </div>
-        </>
-      ) : (
-        <>
-          <Typography
-            className={styles.title_page}
-            variant="h1"
-            color="primary"
-          >
-            Search results: "{search}"
-          </Typography>
-          <ul className={styles.listBookCards}>
-            {books.map((book) => (
-              <li className={styles.listBookCard} key={book.isbn13}>
-                <NavLink
-                  to={`/books/${book.isbn13}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <BookCardPosts book={book} />
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-          <div>
-            <Subscribe />
-          </div>
-        </>
       )}
-    </div>
+      :
+      {search !== "" && (
+        <div>
+          {searchLoading && "Loading"}
+          {!searchLoading && searchBooks.length > 0 && (
+            <>
+              <div className={styles.title}>
+                <Typography
+                  className={styles.searchResultText}
+                  variant="h1"
+                >{`'${search}' SEARCH RESULTS`}</Typography>
+                <Typography
+                  variant="span"
+                  color="secondary"
+                >
+                  {`found ${total} books`}
+                </Typography>
+              </div>
+              <AllBooks books={searchBooks} />
+              <div className={styles.pagination}>
+                <Pagination
+                  onClick={handlePaginationClick}
+                  total={Math.ceil(+total / 10)}
+                />
+              </div>
+            </>
+          )}
+        </div>
+      )}
+    </>
   );
 };
+
 
 export default Main;
