@@ -10,8 +10,11 @@ import { getBooksSearch } from "../../api/Books/getSearchBooks";
 
 export const getBooksThunk = createAsyncThunk(
   "books/getBooksThunk",
-  async () => {
-    return getBooks();
+  async (param, thunkApi) => {
+    const { getState } = thunkApi;
+    const { limit, offset, search, page } = getSlice(getState() as RootState);
+
+    return getBooks({ limit, offset, search, page });
   }
 );
 
@@ -23,23 +26,12 @@ export const getBookThunk = createAsyncThunk(
   }
 );
 
-// export const getSearchBooksThunk = createAsyncThunk(
-//   "books/getSearchBookThunk",
-//   async (param, thunkApi) => {
-//     const { getState } = thunkApi;
-//     const { page, search } = getSlice(getState() as RootState);
-
-//     return getBooksSearch({ page, search });
-//   }
-// );
-type GetBooksParams = {
-  search: string;
-  page: string;
-};
-
 export const getSearchBooksThunk = createAsyncThunk(
-  "books/getSearchBooksThunk",
-  async ({ search, page }: GetBooksParams) => {
-    return getBooksSearch({ search, page });
+  "books/getSearchBookThunk",
+  async (param, thunkApi) => {
+    const { getState } = thunkApi;
+    const { page, search,limit,offset } = getSlice(getState() as RootState);
+
+    return getBooksSearch({ page, search,limit,offset});
   }
 );

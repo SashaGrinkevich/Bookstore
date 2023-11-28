@@ -4,6 +4,7 @@ import axios from "axios";
 
 
 export type GetBooksSuccessResponse = {
+ 
   total: string;
   page: number;
   books: Book[];
@@ -12,7 +13,9 @@ export type GetBooksSuccessResponse = {
 
 export type GetBooksParams = { 
   page: string; 
-  search: string };
+  search: string;
+  limit: number;
+  offset: number; };
 
 export const getBooksSearch = (
   params: GetBooksParams
