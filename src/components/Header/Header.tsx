@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Bookstore from "../../components/Icon/icons/Bookstore.png";
 import styles from "./Header.module.css";
 import Button from "../Button/Button";
@@ -6,25 +6,29 @@ import Input from "../Input/Input";
 import Icon from "../Icon/Icon";
 import { NavLink } from "react-router-dom";
 import { setSearch } from "../../store/books/bookscards.reducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 const Header: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch<AppDispatch>();
- 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchValue(e.target.value);
 
-    const handleClick = () => {
-      dispatch(setSearch(searchValue));
-    };
+  const handleClick = () => {
+    dispatch(setSearch(searchValue));
+    console.log(111)
+  };
 
+  const handleBackClick = () => {
+    dispatch(setSearch(""));
+  };
   return (
     <div className={styles.header}>
-      <img src={Bookstore} alt="logo" className={styles.logo} />
+      <NavLink to="/" onClick={handleBackClick}>
+        <img src={Bookstore} alt="logo" className={styles.logo} />
+      </NavLink>
       <div className={styles.searchWrapper}>
         <Input
           type="text"
@@ -35,7 +39,7 @@ const Header: React.FC = () => {
           label={""}
         />
         <Button className={styles.searchButton} onClick={handleClick}>
-          <Icon type={'search'} />
+          <Icon type={"search"} />
         </Button>
       </div>
       <div className={styles.navButtons}>
@@ -45,12 +49,12 @@ const Header: React.FC = () => {
           </NavLink>
         </Button>
         <Button className={styles.shoppingBagButton}>
-        <NavLink to={"/cart"}>
+          <NavLink to={"/cart"}>
             <Icon type={"cart"} />
           </NavLink>
         </Button>
         <Button className={styles.accountButton}>
-        <NavLink to={"/"}>
+          <NavLink to={"/"}>
             <Icon type={"user"} />
           </NavLink>
         </Button>
@@ -59,8 +63,3 @@ const Header: React.FC = () => {
   );
 };
 export default Header;
-
-function debounce(arg0: (newSearch: string) => void, arg1: number): any {
-  throw new Error("Function not implemented.");
-}
-

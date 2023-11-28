@@ -1,0 +1,28 @@
+.buttons {
+  border: none;
+  font-size: 18px;
+  background-color: transparent;
+}
+.buttons:hover {
+  cursor: pointer;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nextAndPrevBut {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+}
+.nextAndPrevBut:hover {
+  cursor: pointer;
+}
+.numbersContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import { Book } from "../../api/Books/getBook";
-import Typography from "../Typography/Typography";
 import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Typography from "../Typography/Typography";
 import FavoritesBookCard from "../FavoritesDetail/FavoriteBookCard";
+import { setFavorite } from "../../store/books/bookscards.reducer";
 
 import styles from "./Favorite.module.css";
 
@@ -13,6 +14,14 @@ import styles from "./Favorite.module.css";
 const Favorites: React.FC<FavoriteBookProps> = () => {
   const { isBookLoading: loading } = useSelector(getSlice);
   const favoriteBooks = useSelector(getSlice);
+
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    const favBookInLocalStorage = localStorage.getItem('favorites');
+    if (favBookInLocalStorage) {
+      dispatch(setFavorite(JSON.parse(favBookInLocalStorage)))
+    }
+  },[dispatch])
   
   if (favoriteBooks.favoriteBooks.length === 0) {
     return (
@@ -31,7 +40,7 @@ const Favorites: React.FC<FavoriteBookProps> = () => {
     
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
-      {loading && "Loading"}
+      {loading && (
       <>
       <Typography variant="h1" color="primary">
        FAVORITES
@@ -45,7 +54,7 @@ const Favorites: React.FC<FavoriteBookProps> = () => {
             ))}
           </ul>
         </div>
-      </>
+      </>)}
     </div>
   );
 };

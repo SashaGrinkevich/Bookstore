@@ -1,26 +1,34 @@
-import React from "react";
-import { Book } from "../../api/Books/getBook";
-import styles from "./Cart.module.css";
-import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import { getSlice } from "../../store/books/bookscards.selectors";
+import { Book } from "../../api/Books/getBook";
+import BreadCrumbs, { BreadCrumb } from "../BreadCrumbs/BreadCrumbs";
+import { useDispatch, useSelector } from "react-redux";
 import Typography from "../Typography/Typography";
 import CartBook from "../CartDetail/CartDetail";
+import { setCart } from "../../store/books/bookscards.reducer";
 
-interface CartBook { }
+import styles from "./Cart.module.css";
+
+interface CartBook {}
 
 const Cart: React.FC<CartBook> = () => {
   const { isBookLoading: loading } = useSelector(getSlice);
   const cartBook = useSelector(getSlice);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const cartInLocalStorage = localStorage.getItem('cart');
+    if (cartInLocalStorage) {
+      dispatch(setCart(JSON.parse(cartInLocalStorage)));
+    }
+  }, [dispatch]);
   
 
   if (cartBook.cartBook.length === 0) {
-    return (
-      
-      <>
+    return ( 
       <Typography variant="h2" color="primary">
         "EMPTY"
-      </Typography></>
+      </Typography>
     );
   }
   const breadcrumbs: BreadCrumb[] = [
@@ -32,7 +40,7 @@ const Cart: React.FC<CartBook> = () => {
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
-      {loading && "Loading"}
+      {loading && (
       <>
       <Typography variant="h1" color="primary">
        YOUR CART
@@ -46,7 +54,7 @@ const Cart: React.FC<CartBook> = () => {
             ))}
           </ul>
         </div>
-      </>
+      </>)}
     </div>
   );
 };

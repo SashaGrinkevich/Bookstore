@@ -1,16 +1,30 @@
 import { Book } from "./getBook";
 import { client } from "..";
+import axios from "axios";
 
-type GetPostsParams = { limit: number; offset: number; search?: string };
+type GetBooksParams = {
+  limit: number;
+  offset: number;
+  search?: string;
+  page: string;
+};
 
-type GetBooksSuccessResponse = Book []
-
+type GetBooksSuccessResponse = {
+  count: number;
+  page?: string;
+  books: Book[];
+};
 
 export const getBooks = (
-  params: GetPostsParams
+  params: GetBooksParams
 ): Promise<GetBooksSuccessResponse> => {
-  const { limit, offset, search } = params;
+  const { limit, offset, search, page } = params;
+
   return client
-    .get(`/new`,{params:{limit,offset,search}})
-    .then((res) => res.data.books);
+    .get("/new", {
+      params: { limit, offset, search, page },
+    })
+    .then((res) => {
+      return res.data;
+    });
 };

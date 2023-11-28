@@ -1,11 +1,10 @@
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import Typography from "../Typography/Typography";
 import styles from "./CartDetail.module.css";
 import { Book } from "../../api/Books/getBook";
-import { useEffect } from "react";
 import { setCart } from "../../store/books/bookscards.reducer";
-import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 interface CartBooksProps {
   book: Book;
@@ -15,13 +14,13 @@ export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
   const dispatch = useDispatch();
   const cartBook = useSelector(getSlice);
 
-  useDidUpdate(() => {
+  useEffect(() => {
     if (cartBook.cartBook.length > 0) {
       localStorage.setItem("cart", JSON.stringify(cartBook.cartBook));
     }
   }, [cartBook.cartBook]);
 
-  useDidUpdate(() => {
+  useEffect(() => {
     const cartInLocalStorage = localStorage.getItem("cart");
     if (cartInLocalStorage) {
       dispatch(setCart(JSON.parse(cartInLocalStorage)));

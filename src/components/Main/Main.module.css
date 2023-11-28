@@ -1,29 +1,25 @@
-body{
+ body{
     background-color: var(--main-bg-color);
     margin: 0 auto;
     width: 1120px;
 }
 .wrapperMain{
    margin-bottom: 48px;
-    
-    /* background-color: var(--main-bg-color); */
 }
 
-.listBookCard{
-    width: 350px;
-    list-style-type: none;
-    padding: 0 10px;
-
-}
-.listBookCards{
-    display: flex;
-    flex-wrap:wrap ;
-    padding: 0;
-    
-}
-
-.title {
+ .title {
     margin-bottom: 24px;
     color: var(--text-primary);
+}  
+.books {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+.subscribeWrapper {
+  margin: 50px 0;
 }
 
+.pagination {
+  margin-top: 50px;
+}

@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import styles from "./Pagination.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store";
+import { setActivePage } from "../../store/books/bookscards.reducer";
+import { getSlice } from "../../store/books/bookscards.selectors";
 
 interface PaginationProps {
   page?: number;
@@ -7,11 +12,11 @@ interface PaginationProps {
 }
 
 const generatePagination = (page: number, total: number) => {
-  if (total < 6) {
+  if (total < 7) {
     return Array.from(Array(total), (_, i) => i + 1);
   }
 
-  if (page < 6) {
+  if (page < 5) {
     return [1, 2, 3, 4, 5, "...", total];
   }
 
@@ -23,28 +28,54 @@ const generatePagination = (page: number, total: number) => {
 };
 
 const Pagination: React.FC<PaginationProps> = ({ page, total, onClick }) => {
-  const [activePage, setActivePage] = useState(page ?? 1);
+  const { activePage } = useSelector(getSlice);
+  const dispatch = useDispatch<AppDispatch>();
 
   const pagination = generatePagination(activePage, total);
 
+  const incActivePage = () => {
+    if (activePage === total) {
+      return;
+    } else {
+      dispatch(setActivePage(activePage + 1));
+    }
+  };
+  const decActivePage = () => {
+    if (activePage === 1) {
+      return;
+    } else {
+      dispatch(setActivePage(activePage - 1));
+    }
+  };
+
   return (
-    <div>
-      {pagination.map((item, index) => (
-        <React.Fragment key={index}>
-          {typeof item === "number" ? (
-            <button
-              onClick={() => {
-                setActivePage(item);
-                onClick?.(item);
-              }}
-            >
-              {item}
-            </button>
-          ) : (
-            <span>{item}</span>
-          )}
-        </React.Fragment>
-      ))}
+    <div className={styles.buttonsContainer}>
+      <div>
+        <button className={styles.nextAndPrevBut} onClick={decActivePage}>
+        </button>
+      </div>
+      <div className={styles.numbersContainer}>
+        {pagination.map((item, index) => (
+          <React.Fragment key={index}>
+            {typeof item === "number" ? (
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  onClick?.(item);
+                }}
+              >
+                {item}
+              </button>
+            ) : (
+              <span>{item}</span>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+      <div>
+        <button className={styles.nextAndPrevBut} onClick={incActivePage}>
+        </button>
+      </div>
     </div>
   );
 };
