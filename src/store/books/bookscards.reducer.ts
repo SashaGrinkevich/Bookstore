@@ -70,6 +70,7 @@ const booksCardsSlice = createSlice({
     },
     setActivePage: (state, action) => {
       state.page = action.payload;
+      state.activePage = action.payload;
     },
     setIsBooksCardsLoading: (state, action: PayloadAction<boolean>) => {
       state.isBooksLoading = action.payload;
