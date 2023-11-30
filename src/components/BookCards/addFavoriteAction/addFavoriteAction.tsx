@@ -19,7 +19,7 @@ const FavoriteActions: React.FC<FavoriteActionsProps> = ({ book }) => {
   const handleBookmarkClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (book?.isbn13 !== undefined) {
-      dispatch(toggleBookIsFavorite(book.isbn13));
+      dispatch(toggleBookIsFavorite(book));
     }
   };
   return (

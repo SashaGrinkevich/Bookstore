@@ -15,7 +15,7 @@ const CartActions: React.FC<CartActionsProps> = ({ book }) => {
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (book?.isbn13 !== undefined) {
-      dispatch(toggleBookIsCart(book.isbn13));
+      dispatch(toggleBookIsCart(book));
     }
   };
 

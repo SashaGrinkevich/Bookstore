@@ -17,7 +17,8 @@ const TabItem: React.FC<TabItemProps> = ({ tab, onTabClick, className }) => {
 
   return (
     <li>
-      <Button className={clsx(styles.button, className)} onClick={handleClick}>
+      <Button className={clsx(styles.button, className)}
+       onClick={handleClick}>
         {tab.label}
       </Button>
     </li>

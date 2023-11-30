@@ -23,7 +23,6 @@ const tabs: Tab[] = [
 
 const TabsCardDetail: React.FC<TabsDetailProps> = ({ book }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].value);
-  const { isBookLoading: loading}= useSelector(getSlice);
 
   const handleChangeTab = (tab: Tab) => {setActiveTab(tab.value);};
 
@@ -35,13 +34,13 @@ const TabsCardDetail: React.FC<TabsDetailProps> = ({ book }) => {
               tabs={tabs}
               onTabClick={handleChangeTab}
             />
-            {!loading && activeTab === "description" && (
+            {activeTab === "description" && (
               <Typography variant="p" children={book.desc} />
             )}
-            {!loading && activeTab === "authors" && (
+            {activeTab === "authors" && (
               <Typography variant="p" children={book.authors} />
             )}
-            {!loading && activeTab === "reviews" && (
+            {activeTab === "reviews" && (
               <Typography variant="p" children={book.subtitle} />
             )}
       

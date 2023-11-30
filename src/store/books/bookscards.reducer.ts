@@ -84,15 +84,17 @@ const booksCardsSlice = createSlice({
     setBooks: (state, action) => {
       state.books = action.payload;
     },
-
     setSearchState: (state, action) => {
       state.showSearchResult = action.payload;
     },
- 
-    toggleBookIsFavorite: (state, action: PayloadAction<Book["isbn13"]>) => {
-      const book = state.books.find((book) => book.isbn13 === action.payload);
-      if (book) {
-        state.favoriteBooks.push(book);
+    toggleBookIsFavorite: (state, action: PayloadAction<Book>) => {
+      const favoriteBookIndex = state.favoriteBooks.findIndex(
+        (b) => b.isbn13 === action.payload.isbn13
+      );
+      if (favoriteBookIndex === -1) {
+        state.favoriteBooks.push(action.payload);
+      } else {
+        state.favoriteBooks.splice(favoriteBookIndex, 1);
       }
     },
     setFavorite: (state, action: PayloadAction<Book[]>) => {
@@ -101,11 +103,12 @@ const booksCardsSlice = createSlice({
     setCart: (state, action: PayloadAction<Book[]>) => {
       state.cartBook = action.payload;
     },
-    toggleBookIsCart: (state, action: PayloadAction<Book["isbn13"]>) => {
-      const book = state.books.find((book) => book.isbn13 === action.payload);
-
-      if (book) {
-        state.cartBook.push(book);
+    toggleBookIsCart: (state, action: PayloadAction<Book>) => {
+     const cartBookIndex = state.cartBook.findIndex(
+        (b) => b.isbn13 === action.payload.isbn13
+      );
+      if (cartBookIndex === -1) {
+        state.cartBook.splice(cartBookIndex, 1);
       }
     },
   },
