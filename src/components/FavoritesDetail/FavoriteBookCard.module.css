@@ -1,33 +1,41 @@
-.wrapperFavorite{
+.wrapperFavorite {
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+}
+
+.imgWrapper {
+  background-color: #FEE9E2;
+  width: 256px;
+  height: 192.18px;
+}
+
+.image {
+  width: 163.9px;
+  height: 191.46px;
+  margin: 0 46px;
+}
+
+.description {
+  width: 446px;
+  flex-direction: column;
+  margin: 0 32px;
+}
+
+
+.info {
+  width: 352px;
   display: flex;
   justify-content: space-between;
 }
-.card{
-  margin-bottom: 48px;
-  display: flex;
-  justify-content: space-around;
+
+.remove {
+margin: 88px 19px 137px 330px;
+align-content: end;
 }
-.imgWrapper {
-    background-color: bisque;
-    width: 256px;
 
-  }
-  .title{
-    margin: 0;
-  }
-  .price{
-    padding: 42px 0 42px 100px;
-    align-items: center;
-
-
-  }
-  .img {
-    width: 163.9px;
-    padding: 0 46px;
-  }
-.description{
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0 0 32px;
-  margin: 0;
+.btnRemove{
+  background-color: var(--icon-color);
 }

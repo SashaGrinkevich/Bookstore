@@ -19,7 +19,7 @@ export interface Book {
   pdf?: {};
   isFavorite: boolean;
   isCart:boolean;
-
+  count: number;
 }
 
 type GetBookParams = { id: Book["isbn13"] };

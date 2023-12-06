@@ -1,0 +1,12 @@
+.authorization {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+

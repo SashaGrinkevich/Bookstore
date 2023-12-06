@@ -14,6 +14,7 @@ import Main from "../pages/Main";
 import Book from "../pages/Book";
 import Favorite from "../pages/Favorite";
 import Cart from "../pages/Cart"
+import Authorization from "../pages/Authorization";
 
 
 const router = createBrowserRouter(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route path="/books/:id" element={<Book />} />
       <Route path="/cart" element={<Cart />}/>
       <Route path="/favorite" element={<Favorite />} />
+      <Route path="authorization" element={<Authorization />} />
     </>
   )
 );

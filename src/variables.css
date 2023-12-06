@@ -3,6 +3,7 @@
   --footer-bg-color: #FFFFFF;
   --post-bg-color: #ffffff;
   --header-bg-color: #ffffff;
+  --button-text-color:#ffffff;
   --icon-color: #ffffff;
   --text-primary: #313037;
   --text-primary2: #5B5A62;
@@ -22,6 +23,7 @@ body[data-theme="dark"] {
   --footer-bg-color: #313037;
   --post-bg-color: #313037;
   --header-bg-color: #313037;
+  --button-text-color:#313037;
   --icon-color: #313037;
   --text-primary: #ffffff;
   --text-primary2: #5B5A62;

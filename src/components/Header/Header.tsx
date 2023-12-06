@@ -18,7 +18,6 @@ const Header: React.FC = () => {
 
   const handleClick = () => {
     dispatch(setSearch(searchValue));
-    console.log(111)
   };
 
   const handleBackClick = () => {
@@ -54,7 +53,7 @@ const Header: React.FC = () => {
           </NavLink>
         </Button>
         <Button className={styles.accountButton}>
-          <NavLink to={"/"}>
+          <NavLink to={"/authorization"}>
             <Icon type={"user"} />
           </NavLink>
         </Button>

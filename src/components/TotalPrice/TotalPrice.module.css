@@ -1,0 +1,10 @@
+.info {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 16px;
+}
+
+.price_container {
+  margin-bottom: 24px;
+}
