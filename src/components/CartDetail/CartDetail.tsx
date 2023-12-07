@@ -12,10 +12,11 @@ import {
 } from "../../store/books/bookscards.reducer";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
+import { NavLink } from "react-router-dom";
 
 interface CartBooksProps {
   book: Book;
-};
+}
 
 export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
   const dispatch = useDispatch();
@@ -53,32 +54,41 @@ export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
   return (
     <>
       <div className={styles.wrapperCart}>
-        <div className={styles.cart}>
+        <div className={styles.card}>
           <div className={styles.imgWrapper}>
+          <NavLink
+            to={`/books/${book.isbn13}`}
+            style={{ textDecoration: "none" }}
+          >
             <img className={styles.img} src={book.image} alt={book.title} />
+            </NavLink>
           </div>
-          <div className={styles.info}>
-            <div className={styles.book_info}>
-              <div className={styles.title}>
-                <Typography variant="h3" color="primary">
-                  {book.title}
-                </Typography>
-              </div>
-              <div className={styles.other}>
-                <Typography variant="span" color="secondary">
-                  by
-                </Typography>
-                <Typography variant="span" color="secondary">
-                  {book.subtitle},
-                </Typography>
-                <Typography variant="span" color="secondary">
-                  {book.publisher}
-                </Typography>
-                <Typography variant="span" color="secondary">
-                  {book.year}
-                </Typography>
-              </div>
+          <div className={styles.description}>
+          <NavLink
+            to={`/books/${book.isbn13}`}
+            style={{ textDecoration: "none" }}
+          >
+            <div className={styles.title}>
+              <Typography variant="h3" color="primary">
+                {book.title}
+              </Typography>
             </div>
+            </NavLink>
+            <div className={styles.subtitle}>
+              <Typography variant="span" color="secondary">
+                by
+              </Typography>
+              <Typography variant="span" color="secondary">
+                {book.subtitle},
+              </Typography>
+              <Typography variant="span" color="secondary">
+                {book.publisher}
+              </Typography>
+              <Typography variant="span" color="secondary">
+                {book.year}
+              </Typography>
+            </div>
+
             <div className={styles.pagination}>
               <Button className={styles.minus} onClick={handleMinusClick}>
                 <Icon type={"minus"} />
@@ -95,13 +105,13 @@ export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
           </div>
           <div className={styles.price}>
             <Typography variant="h2" color="primary">
-              {`${(Number(book.price.slice(1)) * book.count).toFixed(2)}`}
+              {`$ ${(Number(book.price.slice(1)) * book.count).toFixed(2)}`}
             </Typography>
           </div>
           <div className={styles.remove}>
             <Button
               type="button"
-              className={styles.btn_renove}
+              className={styles.btnRenove}
               onClick={handleRemoveClick}
             >
               {!active ? (

@@ -76,6 +76,7 @@
     height: 56px;
     background: none;
     border: none;
+    align-items: center;
 }
 .favButton:hover {
     cursor: pointer;
@@ -86,6 +87,7 @@
     height: 56px;
     background: none;
     border: none;
+    align-items: center;
 }
 .shoppingBagButton:hover {
     cursor: pointer;
@@ -96,6 +98,7 @@
     height: 56px;
     background: none;
     border: none;
+    align-items: center;
 }
 .accountButton:hover {
     cursor: pointer;

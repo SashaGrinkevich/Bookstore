@@ -18,7 +18,7 @@ const TotalPrice: React.FC<TotalPriceProps> = ({ sumTotalPrice }) => {
 
   return (
     <div className={styles.total}>
-      <div className={styles.price_container}>
+      <div className={styles.priceContainer}>
         <div className={styles.info}>
           <Typography variant="span" color="secondary">
             Sum total
@@ -45,7 +45,7 @@ const TotalPrice: React.FC<TotalPriceProps> = ({ sumTotalPrice }) => {
         </Typography>
       </div>
       <div>
-        <Button>check out</Button>
+        <Button type="submit" className={styles.btnTotalPrice}>CHECK OUT</Button>
       </div>
     </div>
   );

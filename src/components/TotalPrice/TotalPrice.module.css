@@ -1,10 +1,19 @@
+.total {
+  display: flex;
+  flex-direction: column;
+}
+
 .info {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 16px;
 }
 
-.price_container {
-  margin-bottom: 24px;
+.btnTotalPrice {
+  width: 256px;
+  height: 56px;
+  background-color: var(--border-color);
+  color: var(--button-text-color);
+  align-items: center;
+  justify-content: center;
+
 }

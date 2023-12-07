@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 0;
+  margin: 0;
 }
 
 .cardlist {
@@ -20,9 +21,4 @@
 .title {
   padding: 0 50px;
   margin-bottom: 48px;
-}
-
-.empty {
-  text-align: center;
-  padding: 100px;
 }

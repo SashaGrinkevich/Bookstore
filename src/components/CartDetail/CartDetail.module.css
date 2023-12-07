@@ -1,0 +1,46 @@
+.wrapperCart {
+    margin: 0 auto;
+
+}
+.card {
+    display: flex;
+    margin-bottom: 49px;
+}
+.imgWrapper {
+    background-color: #FEE9E2;
+    width: 256px;
+    height: 192.18px;
+}
+.img {
+    width: 163.9px;
+    height: 191.46px;
+    margin: 0 46px;
+}
+.description {
+    width: 446px;
+    flex-direction: column;
+    margin: 0 32px;
+}
+.price{
+   margin: 40px 0; 
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.minus{
+    background-color: var(--icon-color);
+    margin: 27px; 
+}.plus{
+    background-color: var(--icon-color);
+    margin: 27px; 
+}
+.remove {
+margin: 85px 16px 133px 130px;
+align-content: end;
+justify-content: center;
+}
+.btnRenove {
+    background-color: var(--icon-color);
+}
