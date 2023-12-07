@@ -12,9 +12,13 @@ import { ReactComponent as Twitter } from "./icons/Twitter.svg";
 import { ReactComponent as Facebook } from "./icons/Facebook.svg";
 import { ReactComponent as User } from "./icons/User.svg";
 import { ReactComponent as Rating } from "./icons/Rating.svg";
+import { ReactComponent as Cansel } from "./icons/Cancel.svg";
+import { ReactComponent as CancelActive } from "./icons/Cancel-Active.svg";
 
 const icons = {
   bookmark: Bookmark,
+  cansel:Cansel,
+  cancelActive: CancelActive,
   more: More,
   plus: Plus,
   minus: Minus,

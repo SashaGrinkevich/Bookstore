@@ -1,11 +1,24 @@
 .mediumPosts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .cardlist{
-    list-style-type: none;
-    justify-content: space-between;
-    display: flex;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.cardlist {
+  list-style-type: none;
+  justify-content: space-between;
+  display: flex;
+}
+
+.total {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 50px;
+  margin-bottom: 72px;
+}
+.title {
+  padding: 0 50px;
+  margin-bottom: 48px;
+}

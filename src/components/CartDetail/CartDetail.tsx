@@ -1,10 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../../store/books/bookscards.selectors";
 import Typography from "../Typography/Typography";
 import styles from "./CartDetail.module.css";
 import { Book } from "../../api/Books/getBook";
-import { setCart } from "../../store/books/bookscards.reducer";
+import {
+  increaseInCart,
+  removeFromCart,
+  setCart,
+  toggleBookIsCart,
+} from "../../store/books/bookscards.reducer";
+import Icon from "../Icon/Icon";
+import Button from "../Button/Button";
+import { NavLink } from "react-router-dom";
 
 interface CartBooksProps {
   book: Book;
@@ -13,6 +21,22 @@ interface CartBooksProps {
 export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
   const dispatch = useDispatch();
   const cartBook = useSelector(getSlice);
+  const [active, setActive] = useState(false);
+
+  const handlePlusClick = () => {
+    dispatch(increaseInCart(book));
+  };
+
+  const handleMinusClick = () => {
+    dispatch(removeFromCart(book));
+  };
+
+  const handleRemoveClick = () => {
+    if (book) {
+      dispatch(toggleBookIsCart(book));
+      setActive(!active);
+    }
+  };
 
   useEffect(() => {
     if (cartBook.cartBook.length > 0) {
@@ -32,24 +56,70 @@ export const CartBook: React.FC<CartBooksProps> = ({ book }) => {
       <div className={styles.wrapperCart}>
         <div className={styles.card}>
           <div className={styles.imgWrapper}>
+          <NavLink
+            to={`/books/${book.isbn13}`}
+            style={{ textDecoration: "none" }}
+          >
             <img className={styles.img} src={book.image} alt={book.title} />
+            </NavLink>
           </div>
           <div className={styles.description}>
-            <Typography variant="h3" color="primary" className={styles.title}>
-              {book.title}
-            </Typography>
-            <Typography
-              variant="h5"
-              color="secondary"
-              className={styles.subtitle}
-            >
-              {book.subtitle}
+          <NavLink
+            to={`/books/${book.isbn13}`}
+            style={{ textDecoration: "none" }}
+          >
+            <div className={styles.title}>
+              <Typography variant="h3" color="primary">
+                {book.title}
+              </Typography>
+            </div>
+            </NavLink>
+            <div className={styles.subtitle}>
+              <Typography variant="span" color="secondary">
+                by
+              </Typography>
+              <Typography variant="span" color="secondary">
+                {book.subtitle},
+              </Typography>
+              <Typography variant="span" color="secondary">
+                {book.publisher}
+              </Typography>
+              <Typography variant="span" color="secondary">
+                {book.year}
+              </Typography>
+            </div>
+
+            <div className={styles.pagination}>
+              <Button className={styles.minus} onClick={handleMinusClick}>
+                <Icon type={"minus"} />
+              </Button>
+              <span className={styles.quantity}>
+                <Typography variant="h3" color="primary">
+                  {book.count}
+                </Typography>
+              </span>
+              <Button className={styles.plus} onClick={handlePlusClick}>
+                <Icon type={"plus"} />
+              </Button>
+            </div>
+          </div>
+          <div className={styles.price}>
+            <Typography variant="h2" color="primary">
+              {`$ ${(Number(book.price.slice(1)) * book.count).toFixed(2)}`}
             </Typography>
           </div>
-          <div className={styles.info}>
-            <Typography variant="h2" color="primary" className={styles.price}>
-              {book.price}
-            </Typography>
+          <div className={styles.remove}>
+            <Button
+              type="button"
+              className={styles.btnRenove}
+              onClick={handleRemoveClick}
+            >
+              {!active ? (
+                <Icon type={"cansel"} />
+              ) : (
+                <Icon type={"cancelActive"} />
+              )}
+            </Button>
           </div>
         </div>
       </div>

@@ -19,10 +19,7 @@ import TabsCardDetail from "../TabsCardDetail/TabsCardDetail";
 
 const BookPostDetail: React.FC = () => {
   const { id: bookId } = useParams();
-  const {
-    book,
-    isBookLoading: loading,
-  } = useSelector(getSlice);
+  const { book } = useSelector(getSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,11 +45,10 @@ const BookPostDetail: React.FC = () => {
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
-      {/* {loading && "Loading"} */}
       {book && (
         <>
-          <div className={styles.cardWrapper}>
-            <Typography className={styles.title} variant="h2">
+          <div >
+            <Typography  variant="h2">
               {book.title}
             </Typography>
             <div className={styles.card}>
@@ -64,9 +60,7 @@ const BookPostDetail: React.FC = () => {
               </div>
               <div className={styles.content}>
                 <div className={styles.description}>
-                  <Typography
-                    variant="h3"
-                    color="primary"
+                  <Typography variant="h3" color="primary"
                     className={styles.price}
                   >
                     {book.price}
@@ -76,59 +70,37 @@ const BookPostDetail: React.FC = () => {
                   </div>
                 </div>
                 <div className={styles.allInfo}>
-                  <div className={styles.info1}>
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.author}
-                      children={" Authors"}
-                    />
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.publisher}
-                      children={" Publisher"}
-                    />
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.language}
-                      children={" Language"}
-                    />
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.format}
-                      children={" Format"}
-                    />
-                  </div>
-                  <div className={styles.info2}>
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.author}
-                    >
+                  <div className={styles.textWrap}>
+                    <Typography variant="p" color="secondary">
+                      Authors
+                    </Typography>
+                    <Typography variant="p" color="primary">
                       {book.authors}
                     </Typography>
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.publisher}
-                    >
+                  </div>
+                  <div className={styles.textWrap}>
+                    <Typography variant="p" color="secondary">
+                      Publisher
+                    </Typography>
+                    <Typography variant="p" color="primary">
                       {book.publisher}
                     </Typography>
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.language}
-                      children={" English"}
-                    />
-                    <Typography
-                      variant="p"
-                      color="primary"
-                      className={styles.format}
-                      children={" Paper book / ebook (PDF)"}
-                    />
+                  </div>
+                  <div className={styles.textWrap}>
+                    <Typography variant="p" color="secondary">
+                      Language
+                    </Typography>
+                    <Typography variant="p" color="primary">
+                      English
+                    </Typography>
+                  </div>
+                  <div className={styles.textWrap}>
+                    <Typography variant="p" color="secondary">
+                      Format
+                    </Typography>
+                    <Typography variant="p" color="primary">
+                      Paper book / ebook (PDF)
+                    </Typography>
                   </div>
                 </div>
                 <Typography variant="p" color="primary" className={styles.more}>
@@ -141,16 +113,13 @@ const BookPostDetail: React.FC = () => {
                   <div className={styles.previwBook}>
                     <a
                       style={{ textDecoration: "none" }}
-                      href={
-                        "https://itbook.store/files/9781617294136/chapter5.pdf"
-                      }
+                      href={"https://itbook.store/files/9781617294136/chapter5.pdf"}
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
-                      <Typography
-                        variant="p"
-                        color="primary"
-                        className={styles.preview}
-                        children={"Preview book"}
-                      />
+                      <Typography variant="p" color="primary" className={styles.preview}
+                      > Preview book
+                      </Typography>
                     </a>
                   </div>
                 )}
@@ -163,7 +132,6 @@ const BookPostDetail: React.FC = () => {
           <div>
             <Subscribe />
           </div>
-          <div></div>
         </>
       )}
     </div>

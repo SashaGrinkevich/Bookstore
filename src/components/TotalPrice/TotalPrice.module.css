@@ -1,0 +1,19 @@
+.total {
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnTotalPrice {
+  width: 256px;
+  height: 56px;
+  background-color: var(--border-color);
+  color: var(--button-text-color);
+  align-items: center;
+  justify-content: center;
+
+}

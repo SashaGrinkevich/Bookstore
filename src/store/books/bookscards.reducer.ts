@@ -1,9 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Book } from "../../api/Books/getBook";
-import {
-  getBookThunk,
-  getBooksThunk,
-  getSearchBooksThunk,
+import {getBookThunk,getBooksThunk,getSearchBooksThunk,
 } from "./books.actions";
 
 interface BooksCardsState {
@@ -16,21 +13,16 @@ interface BooksCardsState {
   favoriteBooks: Book[];
   cartBook: Book[];
 
-  
   total: string;
   search: string;
   searchBooks: Book[];
   page: string;
   isSearchBooksLoading: boolean;
 
-  searchedTotal: string;
-
   activePage: number;
 
   limit: number;
   offset: number;
-
-  showSearchResult: boolean;
 }
 
 const initialState: BooksCardsState = {
@@ -49,13 +41,11 @@ const initialState: BooksCardsState = {
   searchBooks: [],
   page: "",
   isSearchBooksLoading: false,
-  searchedTotal: "",
   activePage: 1,
 
   limit: 20,
   offset: 0,
 
-  showSearchResult:true,
 };
 
 const booksCardsSlice = createSlice({
@@ -84,28 +74,50 @@ const booksCardsSlice = createSlice({
     setBooks: (state, action) => {
       state.books = action.payload;
     },
-
-    setSearchState: (state, action) => {
-      state.showSearchResult = action.payload;
-    },
- 
-    toggleBookIsFavorite: (state, action: PayloadAction<Book["isbn13"]>) => {
-      const book = state.books.find((book) => book.isbn13 === action.payload);
-      if (book) {
-        state.favoriteBooks.push(book);
+    toggleBookIsFavorite: (state, action: PayloadAction<Book>) => {
+      const favoriteBookIndex = state.favoriteBooks.findIndex(
+        (b) => b.isbn13 === action.payload.isbn13
+      );
+      if (favoriteBookIndex === -1) {
+        state.favoriteBooks.push(action.payload);
+      } else {
+        state.favoriteBooks.splice(favoriteBookIndex, 1);
       }
     },
     setFavorite: (state, action: PayloadAction<Book[]>) => {
       state.favoriteBooks = action.payload;
     },
+    toggleBookIsCart: (state, action: PayloadAction<Book>) => {
+      const cartBookIndex = state.cartBook.findIndex(
+        (book) => book.isbn13 === action.payload.isbn13
+      );
+
+      if (cartBookIndex === -1) {
+        state.cartBook.push({ ...action.payload, count: 1 });
+      } else {
+        state.cartBook.splice(cartBookIndex, 1);
+      }
+    },
     setCart: (state, action: PayloadAction<Book[]>) => {
       state.cartBook = action.payload;
     },
-    toggleBookIsCart: (state, action: PayloadAction<Book["isbn13"]>) => {
-      const book = state.books.find((book) => book.isbn13 === action.payload);
+    increaseInCart: (state, action: PayloadAction<Book>) => {
+      const book = state.cartBook.find(
+        (book) => book.isbn13 === action.payload.isbn13
+      );
 
       if (book) {
-        state.cartBook.push(book);
+        book.count += 1;
+      }
+    },
+    removeFromCart: (state, action: PayloadAction<Book>) => {
+      const book = state.cartBook.find(
+        (book) => book.isbn13 === action.payload.isbn13
+      );
+      if (book) {
+        if (book.count > 1) {
+          book.count -= 1;
+        }
       }
     },
   },
@@ -148,9 +160,10 @@ export const {
   setFavorite,
   toggleBookIsCart,
   setCart,
+  increaseInCart,
+  removeFromCart,
   setSearch,
   setActivePage,
-  setSearchState,
 } = booksCardsSlice.actions;
 
 export default booksCardsSlice.reducer;

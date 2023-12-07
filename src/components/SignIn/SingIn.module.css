@@ -1,53 +1,28 @@
-.SignInWrapper{
-  margin: 196px 0 200px 0;
-}
-.form_signin {
-  background-color: var(--post-bg-color);
+.formSignIn {
   margin: 0 auto;
-  max-width: 544px;
-  padding: 15px;
-  border: 1px solid var(--border-color);
-  padding: 0 16px;
-
-}
-.title1{
-  background: none;
-}
-.title2{
-  background: none;
+  width: 544px;
+  padding: 32px;
+  border: 1px solid var(--border-color-secondary);
 }
 
-
-.formTitle {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 72px;
-  border-bottom: 1px solid var( --border-color-secondary);
-
+.title {
+  margin-bottom: 32px;
+  padding-bottom: 22px;
+  border-bottom: 2px solid #313037;
+  text-align: center;
 }
 
-.btn_signin {
+.link {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.signIn {
+  margin: 0 auto;
   width: 480px;
   height: 56px;
-  font-family: 'Bebas Neue';
-  font-size: 24px;
-  font-weight: 500;
-  text-align: center;
+  background-color: var(--border-color);
+  color: var(--button-text-color);
   align-items: center;
-  background-color: var(--text-primary);
-  padding:16px 190px ;
-  margin: 40px 0;
-}
-
-.SignInBtn{
-  display: flex;
-  padding: 0 32px;
-}
-.signInInput{
-  font-family: 'Helios';
-font-size: 16px;
-font-weight: 700;
-line-height: 32px;
-
+  justify-content: center;
 }

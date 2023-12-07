@@ -1,33 +1,46 @@
-.wrapperCart{
-  display: flex;
-  justify-content: space-between;
+.wrapperCart {
+    margin: 0 auto;
+
 }
-.card{
-  margin-bottom: 48px;
-  display: flex;
-  justify-content: space-around;
+.card {
+    display: flex;
+    margin-bottom: 49px;
 }
 .imgWrapper {
-    background-color: bisque;
+    background-color: #FEE9E2;
     width: 256px;
-
-  }
-  .title{
-    margin: 0;
-  }
-  .price{
-    padding: 42px 0 42px 100px;
-    align-items: center;
-
-
-  }
-  .img {
+    height: 192.18px;
+}
+.img {
     width: 163.9px;
-    padding: 0 46px;
-  }
-.description{
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0 0 32px;
-  margin: 0;
+    height: 191.46px;
+    margin: 0 46px;
+}
+.description {
+    width: 446px;
+    flex-direction: column;
+    margin: 0 32px;
+}
+.price{
+   margin: 40px 0; 
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.minus{
+    background-color: var(--icon-color);
+    margin: 27px; 
+}.plus{
+    background-color: var(--icon-color);
+    margin: 27px; 
+}
+.remove {
+margin: 85px 16px 133px 130px;
+align-content: end;
+justify-content: center;
+}
+.btnRenove {
+    background-color: var(--icon-color);
 }

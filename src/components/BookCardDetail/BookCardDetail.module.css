@@ -1,28 +1,3 @@
-
-.title {
-  text-align: left;
-}
-
-.author {
-  margin: 0;
-}
-
-.publisher {
-  margin: 0;
-}
-
-.language {
-  margin: 0;
-}
-
-.format {
-  margin: 0;
-}
-
-.text {
-  padding: 12px;
-}
-
 .imgWrapper {
   width: 544px;
   height: 472px;
@@ -61,31 +36,16 @@
 
 .allInfo {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 24px;
 
 }
-
-.info1 {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin: 12px 0;
-}
-
-.info2 {
-  display: flex;
-  flex-direction: column;
-  text-align: right;
-  margin: 12px 0;
-}
-
 .content {
   display: flex;
   flex-direction: column;
   
 }
-
 .buttonAddCart {
   width: 448px;
   height: 56px;
@@ -103,4 +63,9 @@
 
 .tabItem{
 margin: 72px 0 48px 0;
+}
+
+.textWrap {
+  display: flex;
+  justify-content: space-between;
 }
