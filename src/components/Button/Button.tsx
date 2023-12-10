@@ -10,6 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "standard" | "icon";
   children?: React.ReactNode;
   type?: 'submit' | 'reset' | 'button' ;
+  font?: 'Bebas Neue';
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,12 +18,13 @@ const Button: React.FC<ButtonProps> = ({
   children,
   color = "primary" ,
   variant = "standard",
+  font = 'Bebas Neue',
   className,
   type,
 }) => {
   return (
     <button
-    className={clsx(styles.button, styles[color], styles[variant], className)}
+    className={clsx(styles.button, styles[color], styles[variant],styles[font], className)}
       onClick={onClick}
       type={type}
     >
