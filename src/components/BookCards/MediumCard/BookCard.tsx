@@ -26,7 +26,7 @@ const BookCardPosts: React.FC<BookCard> = ({ book }) => {
             {book.subtitle}
           </Typography>
           <div className={styles.info}>
-            <Typography variant="h3" color="primary" className={styles.price}>
+            <Typography variant="h3" color="primary" font="Bebas Neue" className={styles.price}>
               {book.price}
             </Typography>
             <div className={styles.rating}>

@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
         </Typography>
         <div className={styles.theme}>
           <label htmlFor="theme">
-            <Typography color="secondary" variant="span">
+            <Typography color="secondary" font="Bebas Neue" variant="span">
               {themeName}
             </Typography>
           </label>

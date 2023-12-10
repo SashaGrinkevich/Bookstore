@@ -5,8 +5,8 @@ import styles from "./Typography.module.css";
 
 interface TypographyProps {
     variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span" | "h6";
-    color?: "primary" |"primary 2"| "secondary" ;
-    font?: "Bebas Neue" | "Helios" | "DIN Pro" ;
+    color?: "primary" |"primary 2"| "secondary";
+    font?: "Bebas Neue" | "Helios Bold" | "Helios Regular" | "DIN Pro" ;
     className?: string;
     children: React.ReactNode;
   }

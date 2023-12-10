@@ -104,7 +104,7 @@ const BookPostDetail: React.FC = () => {
                   </div>
                 </div>
                 <Typography variant="p" color="primary" className={styles.more}>
-                  More details
+                More detailse
                 </Typography>
                 <Button color="secondary" className={styles.buttonAddCart}>
                   <CartActions book={book} />
@@ -118,7 +118,7 @@ const BookPostDetail: React.FC = () => {
                       target="_blank"
                     >
                       <Typography variant="p" color="primary" className={styles.preview}
-                      > Preview book
+                      > Preview book 
                       </Typography>
                     </a>
                   </div>
