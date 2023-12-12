@@ -1,0 +1,20 @@
+.button {
+  font-family: "Bebas Neue";
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: 0.3s;
+    color: var(--to-top-button-color);
+  }
+  
+  .visible {
+    opacity: 1;
+  }
+  

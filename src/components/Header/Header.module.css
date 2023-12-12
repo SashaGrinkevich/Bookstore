@@ -6,7 +6,7 @@
     justify-content: space-between;
    max-width: 1120px;
     margin: 0 auto;
-    border-bottom: 1px solid #E7E7E7;
+    border-bottom: 1px solid var(--border-color-secondary);
     margin-bottom: 72px;
 }
 
@@ -28,14 +28,13 @@
     font-size: 16px;
     padding: 18px 30px;
     margin: 0 105px 0 154px;
-    color: var(--text-primary);
+    color: black;
+    background-color: var(--input-header-color);
 }
 
 .search:focus {
     outline: none;
     border-bottom-color: var(--text-primary);
-    
-
 }
   
 .searchButton {
@@ -68,8 +67,7 @@
 .navButtons {
     width: 184px;
     display: flex;
-    justify-content: space-around;
-    
+    justify-content: space-around;  
 }
 
 .favButton {
@@ -81,7 +79,6 @@
 }
 .favButton:hover {
     cursor: pointer;
-
 }
 .shoppingBagButton {
     width: 56px;
@@ -92,7 +89,6 @@
 }
 .shoppingBagButton:hover {
     cursor: pointer;
-
 }
 .accountButton{
     width: 56px;
@@ -103,6 +99,5 @@
 }
 .accountButton:hover {
     cursor: pointer;
-
 }
   

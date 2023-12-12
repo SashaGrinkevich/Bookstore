@@ -11,18 +11,18 @@
   --text-error: rgb(226, 39, 39);
   --border-color: #313037;
   --border-color-secondary:#E7E7E7;
+  --to-top-button-color:#313037;
   --input-focus-border-color: rgba(49, 48, 55, 0.5);
   --input-error-border-color: rgba(226, 89, 39, 0.7);
-  /* --font-family1:'Bebas Neue';
-  --font-family2:'Helios';
-  --font-family3:'DIN Pro'; */
+ --subscribe-bg-color: #F4EEFD;
+ --input-header-color: #ffffff;
 }
 
 body[data-theme="dark"] {
   --main-bg-color: #313037;
   --footer-bg-color: #313037;
   --post-bg-color: #313037;
-  --header-bg-color: #313037;
+  --header-bg-color: #5B5A62;
   --button-text-color:#313037;
   --icon-color: #313037;
   --text-primary: #ffffff;
@@ -31,9 +31,10 @@ body[data-theme="dark"] {
   --text-error: rgb(226, 39, 39);
   --border-color: #E7E7E7;
   --border-color-secondary: #313037;
+  --to-top-button-color:#313037;
   --input-focus-border-color: rgba(255, 255, 255, 0.7);
   --input-error-border-color: rgba(226, 89, 39, 0.7);
-  /* --font-family1:'Bebas Neue';
-  --font-family2:'Helios';
-  --font-family3:'DIN Pro'; */
+  --subscribe-bg-color: #5b3891;
+  --input-header-color: #5B5A62;
+ 
 }
